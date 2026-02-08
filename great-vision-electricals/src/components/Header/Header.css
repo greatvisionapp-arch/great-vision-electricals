@@ -1,0 +1,238 @@
+/* ===== THEME VARIABLES ===== */
+/* DARK (default) */
+:root {
+  --bg: radial-gradient(1200px 400px at top, #0e1629, #0b0f1a);
+
+  --surface: rgba(17, 24, 39, 0.75);
+  --surface-strong: rgba(17, 24, 39, 0.9);
+  --border: #1f2933;
+
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+
+  --primary: #38bdf8;
+  --accent: #22d3ee;
+}
+
+/* LIGHT */
+:root[data-theme="light"] {
+  --bg: #ffffff;
+
+  --surface: rgba(255, 255, 255, 0.75);
+  --surface-strong: rgba(255, 255, 255, 0.95);
+  --border: #e5e7eb;
+
+  --text: #0f172a;
+  --muted: #475569;
+
+  --primary: #0284c7;
+  --accent: #0891b2;
+}
+
+/* ===== BASE ===== */
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+
+  background: var(--bg);
+  color: var(--text);
+
+  transition: background 0.35s ease, color 0.35s ease;
+}
+
+/* ===== Header ===== */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  background: var(--surface);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+/* inner layout */
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+/* default (dark theme) */
+.header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--primary),
+    transparent
+  );
+  opacity: 0.6;
+}
+
+/* LIGHT THEME → BLACK DIVIDER */
+:root[data-theme="light"] .header::after {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 0, 0, 0.6),
+    transparent
+  );
+  opacity: 0.7;
+}
+
+
+/* ===== Logo ===== */
+.logo {
+  display: flex;
+  gap: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  font-family: "Montserrat", system-ui, sans-serif;
+}
+
+/* base text */
+.logo-great,
+.logo-vision {
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  color: var(--text);
+  position: relative;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+/* hover colors */
+.logo:hover .logo-great {
+  color: #ef4444; /* red */
+  transform: translateY(-1px);
+}
+
+.logo:hover .logo-vision {
+  color: #3b82f6; /* blue */
+  transform: translateY(-1px);
+}
+
+/* ===== SHINE EFFECT ===== */
+.logo::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -120%;
+  width: 60%;
+  height: 200%;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+}
+
+/* trigger shine on hover */
+.logo:hover::after {
+  animation: logo-shine 0.8s ease forwards;
+}
+
+@keyframes logo-shine {
+  from {
+    left: -120%;
+  }
+  to {
+    left: 140%;
+  }
+}
+
+/* ===== Nav ===== */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav a {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 14px;
+  gap: 6px;
+
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1;
+
+  border-radius: 10px;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.nav a:hover {
+  color: var(--text);
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
+}
+
+/* ===== Actions ===== */
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* Admin button */
+.admin {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+
+  padding: 8px 14px;
+  border-radius: 999px;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  cursor: pointer;
+  transition: background 0.25s ease, border 0.25s ease;
+}
+
+.admin:hover {
+  background: var(--surface-strong);
+  border-color: var(--accent);
+}
+
+/* ===== Theme Icon Button ===== */
+.icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+
+  transition: background 0.25s ease, transform 0.15s ease;
+}
+
+.icon-btn:hover {
+  background: var(--surface-strong);
+}
+
+.icon-btn:active {
+  transform: scale(0.9);
+}
