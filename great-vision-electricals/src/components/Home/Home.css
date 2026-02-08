@@ -259,3 +259,63 @@
   .home-title { font-size: 36px; }
   .home-subtitle { font-size: 18px; }
 }
+
+@media (max-width: 480px) {
+  .home {
+    padding: 56px 14px;
+    min-height: 100svh; /* Android Chrome fix */
+  }
+
+  .home-container {
+    max-width: 100%;
+  }
+
+  .home-title {
+    font-size: 28px;
+    line-height: 1.25;
+  }
+
+  .home-subtitle-box {
+    padding: 12px 18px;
+    border-radius: 10px;
+  }
+
+  .home-subtitle {
+    font-size: 14px;
+  }
+
+  .home-subtitle-track {
+    gap: 28px;
+    animation-duration: 18s; /* slower on mobile */
+  }
+
+  .home-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 15px;
+    border-radius: 12px;
+  }
+}
+@media (max-width: 360px) {
+  .home-title {
+    font-size: 24px;
+  }
+
+  .home-subtitle {
+    font-size: 13px;
+  }
+}
+.home-subtitle-track {
+  transform: translateZ(0); /* GPU smooth */
+}
+
+.home-btn,
+.brand {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+@supports (padding: env(safe-area-inset-bottom)) {
+  .home {
+    padding-bottom: calc(56px + env(safe-area-inset-bottom));
+  }
+}
