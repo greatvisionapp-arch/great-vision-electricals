@@ -236,3 +236,79 @@ body {
 .icon-btn:active {
   transform: scale(0.9);
 }
+
+/* ================= ANDROID / MOBILE ================= */
+
+/* Touch optimization */
+@media (hover: none) and (pointer: coarse) {
+  .nav a,
+  .icon-btn,
+  .admin {
+    min-height: 44px;   /* Android touch standard */
+  }
+}
+
+/* Tablets & Phones */
+@media (max-width: 768px) {
+  .header {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .header-inner {
+    padding: 10px 14px;
+  }
+
+  /* hide nav (hamburger-ready) */
+  .nav {
+    display: none;
+  }
+
+  .logo-great,
+  .logo-vision {
+    font-size: 16px;
+    letter-spacing: 0.3px;
+  }
+
+  .actions {
+    gap: 8px;
+  }
+
+  .icon-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .admin {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+}
+
+/* Small Android phones */
+@media (max-width: 480px) {
+  .header-inner {
+    padding: 8px 12px;
+  }
+
+  .logo-great,
+  .logo-vision {
+    font-size: 15px;
+  }
+
+  .admin {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}
+
+/* Ultra small / old Android */
+@media (max-width: 360px) {
+  .logo-great,
+  .logo-vision {
+    font-size: 14px;
+  }
+
+  .admin {
+    display: none; /* optional */
+  }
+}
