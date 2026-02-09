@@ -1,5 +1,6 @@
 import { useEffect, useState, useMemo } from "react";
 import { getHomeSubtitles } from "../../api/homeSubtitles.js";
+import { getHomeBadges } from "../../api/homeBadges.js";
 import "./Home.css";
 
 const FALLBACK_SUBTITLES = [
@@ -8,42 +9,81 @@ const FALLBACK_SUBTITLES = [
   { id: "f3", text: "Powering Homes & Businesses" },
 ];
 
+const FALLBACK_BADGES = [
+  { id: "b1", text: "AUTHORIZED DEALER" },
+];
+
 const Home = () => {
   const [subtitles, setSubtitles] = useState(FALLBACK_SUBTITLES);
+  const [badges, setBadges] = useState(FALLBACK_BADGES);
+  const [badgeIndex, setBadgeIndex] = useState(0);
 
+  // 🔹 Load subtitles (PocketBase)
   useEffect(() => {
-    let isMounted = true;
+    let mounted = true;
 
     const load = async () => {
       try {
         const data = await getHomeSubtitles();
         if (
-          isMounted &&
+          mounted &&
           Array.isArray(data) &&
           data.length > 0 &&
           data.every((x) => x.text)
         ) {
           setSubtitles(data);
         }
-      } catch {
-        // fallback stays
-      }
+      } catch {}
     };
 
     load();
-    const intervalId = setInterval(load, 15000);
+    const refresh = setInterval(load, 15000);
 
     return () => {
-      isMounted = false;
-      clearInterval(intervalId);
+      mounted = false;
+      clearInterval(refresh);
     };
   }, []);
 
-  // prevent empty / glitchy render
+  // 🔹 Load badges (SEPARATE collection, ordered)
+  useEffect(() => {
+    let mounted = true;
+
+    const load = async () => {
+      try {
+        const data = await getHomeBadges(); // sorted by order in API
+        if (
+          mounted &&
+          Array.isArray(data) &&
+          data.length > 0 &&
+          data.every((x) => x.text)
+        ) {
+          setBadges(data);
+        }
+      } catch {}
+    };
+
+    load();
+    return () => (mounted = false);
+  }, []);
+
   const safeSubtitles =
     subtitles.length > 0 ? subtitles : FALLBACK_SUBTITLES;
 
-  // duplicate list safely (memoized)
+  const safeBadges = badges.length > 0 ? badges : FALLBACK_BADGES;
+
+  // 🔹 Badge auto-rotate
+  useEffect(() => {
+    if (safeBadges.length <= 1) return;
+
+    const badgeTimer = setInterval(() => {
+      setBadgeIndex((i) => (i + 1) % safeBadges.length);
+    }, 2500);
+
+    return () => clearInterval(badgeTimer);
+  }, [safeBadges]);
+
+  // 🔹 Subtitle scroll loop
   const loopList = useMemo(
     () => [...safeSubtitles, ...safeSubtitles],
     [safeSubtitles]
@@ -52,6 +92,13 @@ const Home = () => {
   return (
     <section className="home" id="home">
       <div className="home-container">
+        {/* BADGE (PocketBase → home_badges) */}
+        <span className="home-badge">
+          <span key={badgeIndex} className="badge-text">
+            {safeBadges[badgeIndex]?.text}
+          </span>
+        </span>
+
         <h1 className="home-title">
           Welcome to{" "}
           <span className="brand">

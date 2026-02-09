@@ -19,17 +19,43 @@
 }
 
 /* GRID */
+/* ================= GRID BACKGROUND ================= */
+
+/* DEFAULT (DARK THEME) */
 .home::before {
   content: "";
   position: absolute;
   inset: 0;
+  pointer-events: none;
+
   background-image:
     linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+
   background-size: 28px 28px;
-  mask-image: radial-gradient(circle at center, black 45%, transparent 78%);
-  pointer-events: none;
+
+  mask-image: radial-gradient(
+    circle at center,
+    black 45%,
+    transparent 78%
+  );
 }
+
+/* ================= LIGHT THEME GRID FIX ================= */
+:root[data-theme="light"] .home::before {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px);
+
+  background-size: 28px 28px;
+
+  mask-image: radial-gradient(
+    circle at center,
+    black 55%,
+    transparent 85%
+  );
+}
+
 
 /* CONTENT */
 .home-container {
@@ -44,6 +70,60 @@
   font-weight: 800;
   margin-bottom: 16px;
   line-height: 1.2;
+}
+
+
+/* ================= Badge ================= */
+
+/* ================= BADGE ================= */
+
+.home-badge {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+
+  color: var(--badge-text);
+  background: var(--badge-bg);
+  border: 1px solid var(--badge-border);
+  border-radius: 999px;
+
+  cursor: pointer;
+  overflow: hidden;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.home-badge:hover {
+  transform: translateY(-2px) scale(1.05);
+  background: var(--badge-bg-hover);
+  color: var(--badge-text-hover);
+  box-shadow: 0 8px 24px var(--badge-shadow);
+}
+
+
+:root[data-theme="light"] {
+  --badge-bg: rgba(0, 0, 0, 0.04);
+  --badge-bg-hover: rgba(0, 0, 0, 0.08);
+  --badge-border: rgba(0, 0, 0, 0.916);
+  --badge-text: #111111;
+  --badge-text-hover: #000000;
+  --badge-shadow: rgba(0, 0, 0, 0.18);
+}
+
+:root[data-theme="dark"] {
+  --badge-bg: rgba(159, 215, 255, 0.08);
+  --badge-bg-hover: rgba(159, 215, 255, 0.18);
+  --badge-border: rgba(159, 215, 255, 0.35);
+  --badge-text: #9fd7ff;
+  --badge-text-hover: #ffffff;
+  --badge-shadow: rgba(159, 215, 255, 0.32);
 }
 
 /* ================= BRAND SHINE ================= */
@@ -112,17 +192,17 @@
 
   background: linear-gradient(
     135deg,
-    rgba(255,255,255,0.28),
+    rgba(0, 0, 0, 0.28),
     rgba(255,255,255,0.05)
   );
   backdrop-filter: blur(14px) saturate(160%);
   -webkit-backdrop-filter: blur(14px) saturate(160%);
 
-  border: 1px solid rgba(255,255,255,0.22);
+  border: 1px solid rgba(0, 0, 0, 0.22);
 
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.35),
-    inset 0 -1px 0 rgba(255,255,255,0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.555),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.345),
     0 18px 40px rgba(0,0,0,0.55);
 }
 
@@ -135,7 +215,7 @@
   background: linear-gradient(
     120deg,
     rgba(255,255,255,0.55),
-    rgba(255,255,255,0.18),
+    rgba(0, 0, 0, 0.18),
     transparent
   );
   opacity: 0.35;
@@ -187,14 +267,14 @@
     180deg,
     #ffffff 0%,
     #dfe4ff 45%,
-    #a7b2ff 100%
+    #000000 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
   text-shadow:
     0 1px 1px rgba(255,255,255,0.35),
-    0 6px 14px rgba(130,150,255,0.4);
+    0 6px 14px rgba(0, 0, 0, 0.973);
 }
 
 /* SEAMLESS LOOP */
@@ -213,46 +293,103 @@
   background: none;
   -webkit-text-fill-color: #111;
   color: #111;
-  text-shadow: 0 1px 1px rgba(0,0,0,0.15);
+
+  /* ❌ remove embossed look */
+  text-shadow: none;
 }
+
+/* box ko bhi thoda flat karo */
+:root[data-theme="light"] .home-subtitle-box {
+  background: rgba(255,255,255,0.85);
+  border: 1px solid rgba(0,0,0,0.08);
+
+  box-shadow:
+    0 8px 20px rgba(0,0,0,0.12); /* no inset shine */
+}
+
+/* gloss disable */
+:root[data-theme="light"] .home-subtitle-box::before,
+:root[data-theme="light"] .home-subtitle-box::after {
+  opacity: 0;
+}
+
+
+/* ================= BUTTON ================= */
 
 /* ================= BUTTON ================= */
 
 .home-btn {
+  position: relative; /* REQUIRED for gloss */
   display: block;
-  margin: 0 auto;
+  margin: 56px auto 0;
   padding: 14px 32px;
   font-size: 16px;
   font-weight: 600;
   border-radius: 14px;
   cursor: pointer;
 
-  background: #111827;
-  color: #ffffff;
-  border: none;
+  color: var(--btn-text);
+  background: var(--btn-bg);
+  border: 1px solid var(--btn-border);
 
-  box-shadow: 0 10px 24px rgba(0,0,0,0.18);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 10px 24px var(--btn-shadow);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
+
 
 .home-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 18px 36px rgba(0,0,0,0.22);
+  background: var(--btn-bg-hover);
+  box-shadow: 0 18px 36px var(--btn-shadow-hover);
 }
 
-/* LIGHT BUTTON */
+:root[data-theme="dark"] .home-btn {
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.18),
+    rgba(255,255,255,0.05)
+  );
+  border: 1px solid rgba(255,255,255,0.25);
+  box-shadow:
+    0 14px 32px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.4);
+}
+
+/* glossy highlight */
+:root[data-theme="dark"] .home-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0.55),
+    rgba(255,255,255,0.18),
+    transparent
+  );
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+:root[data-theme="dark"] .home-btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 20px 44px rgba(0,0,0,0.75),
+    inset 0 1px 0 rgba(255,255,255,0.5);
+}
+
+
 :root[data-theme="light"] .home-btn {
   background: #ffffff;
   color: #000000;
   border: 1px solid #000000;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.18);
 }
 
-/* LIGHT GRID */
-:root[data-theme="light"] .home::before {
-  background-image:
-    linear-gradient(rgba(0,0,0,0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.08) 1px, transparent 1px);
-}
+
 
 /* MOBILE */
 @media (max-width: 768px) {
