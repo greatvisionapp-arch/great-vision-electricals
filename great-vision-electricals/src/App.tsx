@@ -6,7 +6,8 @@ import Home from './components/Home/Home';
 import BelowHome from './components/BelowHome/BelowHome';
 import CookieConsent from './components/Cookies/CookieConsent';
 import Community from './components/Community/Community';  // Add the Community component
-import Footer from './components/Footer/Footer';  // Import the Footer component
+import Footer from './components/footer/Footer';
+  // Import the Footer component
 
 const App: React.FC = () => {
   return (
