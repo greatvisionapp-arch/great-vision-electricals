@@ -9,20 +9,20 @@ body,
   margin: 0;
   padding: 0;
   min-height: 100%;
+  width: 100%; /* Ensure full width */
+  background: var(--page-bg); /* Apply the same background to the entire page */
+  color: var(--text); /* Set text color */
 }
 
 /* ===== THEME VARS ===== */
 /* DARK (default) */
 :root {
   --page-bg: radial-gradient(1200px 400px at top, #0e1629, #0b0f1a);
-
   --surface: rgba(17, 24, 39, 0.75);
   --surface-strong: rgba(17, 24, 39, 0.9);
   --border: #1f2933;
-
   --text: #e5e7eb;
   --muted: #9ca3af;
-
   --primary: #38bdf8;
   --accent: #22d3ee;
 }
@@ -30,14 +30,11 @@ body,
 /* LIGHT */
 :root[data-theme="light"] {
   --page-bg: #ffffff;
-
   --surface: rgba(255, 255, 255, 0.75);
   --surface-strong: rgba(255, 255, 255, 0.95);
   --border: #e5e7eb;
-
   --text: #0f172a;
   --muted: #475569;
-
   --primary: #0284c7;
   --accent: #0891b2;
 }
@@ -46,10 +43,6 @@ body,
 body {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
-
-  background: var(--page-bg);
-  color: var(--text);
-
   transition: background 0.35s ease, color 0.35s ease;
 }
 

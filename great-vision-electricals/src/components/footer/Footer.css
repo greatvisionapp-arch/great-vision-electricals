@@ -1,0 +1,224 @@
+.footer {
+  background-color: #020617;
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  position: relative;
+  z-index: 1; /* Ensure footer content stays above the divider */
+}
+
+/* Faded divider at the top */
+.footer::before {
+  content: "";
+  position: absolute;
+  top: -10px; /* Adjust if needed */
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #333, transparent);
+  z-index: -1; /* Ensure the divider is below footer content */
+}
+
+/* Footer content styles */
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.footer-section {
+  flex: 1;
+  padding: 10px;
+}
+
+.footer-section h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.footer-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin: 8px 0;
+}
+
+.footer-section ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+}
+.footer.dark .footer-section.community ul li a {
+  color: #62b1f6; /* Light blue */
+}
+
+.footer-section ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  border-top: 1px solid #333;
+  padding: 20px 0;
+  font-size: 0.9rem;
+}
+
+.footer-bottom p {
+  margin: 5px 0;
+}
+
+.footer-bottom a {
+  color: #62b1f6;
+  text-decoration: none;
+}
+
+.footer-bottom a:hover {
+  text-decoration: underline;
+}
+
+/* Default theme is Dark */
+.footer {
+  background-color: #020617;
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  position: relative;
+  z-index: 1; /* Ensure footer content stays above the divider */
+}
+
+/* Light theme (will be applied when data-theme="light" is set on body or footer) */
+[data-theme="light"] .footer-section.community ul li a {
+  color: #efefef; /* Blue for light theme */
+}
+
+[data-theme="light"] .footer::before {
+  background: linear-gradient(to right, transparent, #ccc, transparent); /* Light divider */
+}
+
+[data-theme="light"] .footer-bottom {
+  border-top: 1px solid #ddd; /* Lighter border */
+}
+
+[data-theme="light"] .footer-section ul li a {
+  color: #000000;
+}
+
+[data-theme="light"] .footer-section ul li a:hover {
+  color: #007bff; /* Highlight color */
+}
+
+[data-theme="light"] .footer-bottom a {
+  color: #007bff;
+}
+
+[data-theme="light"] .footer-bottom a:hover {
+  color: #0056b3;
+}
+
+/* Faded divider at the top */
+.footer::before {
+  content: "";
+  position: absolute;
+  top: -10px; /* Adjust if needed */
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #333, transparent); /* Dark divider */
+  z-index: -1; /* Ensure the divider is below footer content */
+}
+
+/* Footer content styles */
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.footer-section {
+  flex: 1;
+  padding: 10px;
+}
+
+.footer-section h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.footer-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin: 8px 0;
+}
+
+.footer-section ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.footer-section ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  border-top: 1px solid #333;
+  padding: 20px 0;
+  font-size: 0.9rem;
+}
+
+.footer-bottom p {
+  margin: 5px 0;
+}
+
+.footer-bottom a {
+  color: #62b1f6;
+  text-decoration: none;
+}
+
+.footer-bottom a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column; /* Stack sections vertically */
+    align-items: center; /* Center content */
+  }
+
+  .footer-section {
+    flex: none;
+    width: 100%;
+    margin-bottom: 20px; /* Space between sections */
+  }
+
+  .footer-bottom {
+    font-size: 0.8rem;
+  }
+}
+
+/* Extra small devices (mobile phones, especially Android) */
+@media (max-width: 480px) {
+  .footer {
+    padding: 20px 10px; /* Reduced padding for small screens */
+  }
+
+  .footer-section h3 {
+    font-size: 1rem; /* Smaller font size for better fitting */
+  }
+
+  .footer-section ul li a {
+    font-size: 0.9rem; /* Smaller font size for links */
+  }
+
+  .footer-bottom p {
+    font-size: 0.8rem;
+  }
+
+  .footer-bottom a {
+    font-size: 0.9rem; /* Adjust link font size */
+  }
+}

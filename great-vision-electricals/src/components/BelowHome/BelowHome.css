@@ -8,7 +8,7 @@
   background:
     radial-gradient(
       circle at top,
-      rgba(20,184,166,0.12),
+      rgba(20, 184, 165, 0.044),
       transparent 60%
     ),
     #020617;
@@ -263,7 +263,7 @@
 
 /* ICON — subtle */
 .info-item:hover .info-icon {
-  color: #7dd3fc;                       /* softer blue */
+  color: #000000;                       /* softer blue */
   transform: scale(1.06);
 }
 
@@ -605,10 +605,10 @@ img {
   background:
     radial-gradient(
       circle at top,
-      rgba(56,189,248,0.18),
+      rgba(56, 191, 248, 0),
       transparent 60%
     ),
-    #f8fafc;
+    #fafbfb;
 }
 
 [data-theme="light"] .screen-inner {
@@ -619,12 +619,12 @@ img {
 [data-theme="light"] .device-frame {
   background: linear-gradient(180deg, #ffffff, #f1f5f9);
   box-shadow:
-    0 30px 80px rgba(15,23,42,0.15),
+    0 30px 80px rgba(0, 0, 0, 0.15),
     inset 0 0 0 1px rgba(15,23,42,0.08);
 }
 
 [data-theme="light"] .device-frame::before {
-  background: #cbd5f5;
+  background: #000000;
 }
 
 /* INFO BOX */
@@ -658,7 +658,7 @@ img {
 }
 
 [data-theme="light"] .ownership:hover .ownership-sub {
-  color: #0284c7;
+  color: #ff0000;
 }
 
 /* OWNER BOX */
@@ -675,7 +675,7 @@ img {
 
 /* SINCE YEAR */
 [data-theme="light"] .since-year {
-  background: linear-gradient(90deg, #0284c7, #0ea5e9);
+  background: linear-gradient(90deg, #000000, #000000);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

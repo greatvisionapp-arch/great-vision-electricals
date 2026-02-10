@@ -120,9 +120,14 @@ const Home = () => {
           </div>
         </div>
 
-        <button type="button" className="home-btn">
-          Explore Products
-        </button>
+        <button 
+  type="button" 
+  className="home-btn" 
+  onClick={() => window.location.href = "https://shivamelectricals.shop/"}
+>
+  Explore Products
+</button>
+
       </div>
     </section>
   );
