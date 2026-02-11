@@ -1,0 +1,139 @@
+.scroller {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+  scroll-behavior: smooth;
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(20, 184, 165, 0.044),
+      transparent 60%
+    ),
+    #020617;
+}
+
+.scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: max-content;
+  animation: seamlessScroll 20s linear infinite;
+}
+
+/* Pause when user interacts */
+.scroller:hover .track {
+  animation-play-state: paused;
+}
+
+.track img {
+  height: auto;
+  width: auto;
+  max-height: 480px;   /* ⬇ reduced from 620px */
+  max-width: 90vw;     /* slightly tighter */
+  object-fit: contain;
+  border-radius: 10px;
+  display: block;
+  margin-right: 12px;
+}
+
+
+/* ======= REAL SEAMLESS LOOP ======= */
+@keyframes seamlessScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+
+
+
+/* Optional pause on hover */
+.scroller:hover .track {
+  animation-play-state: paused;
+}
+
+
+.owner-title {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.owner-title:hover {
+  color: red;
+}
+
+/* ---------- TITLE ---------- */
+.company-title {
+  text-align: center;
+  cursor: pointer;
+  color: white; /* FIX — tumhara background dark hai, text black tha */
+}
+
+/* Default colors (corrected for dark bg) */
+.great {
+  color: white;
+}
+
+.vision {
+  color: white;
+}
+
+/* Hover effect (tumhara requirement) */
+.company-title:hover .great {
+  color: red;
+}
+
+.company-title:hover .vision {
+  color: blue;
+}
+.full-divider,
+.footer-divider {
+  width: 100%;      /* FIX — 100vw hata diya (problem create karta hai) */
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    red,
+    blue,
+    transparent
+  );
+  margin: 16px 0;
+}
+
+/* ======= RESPONSIVE BREAKPOINTS ======= */
+
+@media (max-width: 480px) {
+  .track img {
+    max-height: 160px;  /* smaller on small phones */
+    margin-right: 6px;
+  }
+
+  .track {
+    animation: seamlessScroll 20s linear infinite;
+  }
+}
+
+@media (max-width: 768px) {
+  .track img {
+    max-height: 220px;  /* smaller than before */
+    margin-right: 8px;
+  }
+}
+
+@media (min-width: 769px) {
+  .track img {
+    max-height: 480px;  /* desktop limit */
+    margin-right: 12px;
+  }
+}

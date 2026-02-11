@@ -1,0 +1,80 @@
+:root {
+  --bg-main: #ffffff;
+  --bg-alt: #f6f7fb;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --border-color: #e5e7eb;
+  --accent: #2563eb;
+}
+
+.privacy-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 48px 24px 64px;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+  color: var(--text-primary);
+  background: var(--bg-main);
+}
+
+.privacy-container h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+
+.privacy-container .effective-date {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 32px;
+}
+
+.privacy-section {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+.privacy-container h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.privacy-container p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.privacy-container ul {
+  margin: 8px 0 16px 18px;
+}
+
+.privacy-container li {
+  margin-bottom: 6px;
+  line-height: 1.6;
+}
+
+.contact-box {
+  margin-top: 16px;
+  padding: 14px 16px;
+  background: var(--bg-alt);
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+}
+
+.contact-box strong {
+  color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+  .privacy-container {
+    padding: 32px 16px 48px;
+  }
+
+  .privacy-container h1 {
+    font-size: 1.75rem;
+  }
+}

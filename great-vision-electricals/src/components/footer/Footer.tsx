@@ -36,7 +36,7 @@ const Footer: React.FC = () => {
         <div className="footer-section legal">
           <h3>LEGAL</h3>
           <ul>
-            <li><a href="#">Privacy</a></li>
+            <a href="/privacy">Privacy Policy</a>
             <li><a href="#">Terms</a></li>
             <li><a href="#">Imprint</a></li>
             <li><a href="#">Contact</a></li>
