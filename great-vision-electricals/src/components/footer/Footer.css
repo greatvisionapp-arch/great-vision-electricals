@@ -166,12 +166,12 @@
 
 .footer-bottom {
   border-top: 1px solid #333;
-  padding: 20px 0;
+  padding: 10px 0;
   font-size: 0.9rem;
 }
 
 .footer-bottom p {
-  margin: 5px 0;
+  margin: -5px 0;
 }
 
 .footer-bottom a {

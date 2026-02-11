@@ -46,7 +46,8 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 1000;          /* 🔥 MOST IMPORTANT */
+  pointer-events: auto;
 
   background: var(--surface);
   backdrop-filter: blur(12px);
@@ -209,7 +210,7 @@ body {
 
 .admin:hover {
   background: var(--surface-strong);
-  border-color: var(--accent);
+  border-color: #e5e7eb;
 }
 
 /* ===== Theme Icon Button ===== */
@@ -284,31 +285,65 @@ body {
   }
 }
 
-/* Small Android phones */
-@media (max-width: 480px) {
-  .header-inner {
-    padding: 8px 12px;
+@media (hover: none) and (pointer: coarse) {
+  .nav a,
+  .icon-btn,
+  .admin {
+    min-height: 44px;   /* Android accessibility standard */
+    min-width: 44px;    /* <-- यह तुमसे मिस था */
   }
 
-  .logo-great,
-  .logo-vision {
-    font-size: 15px;
+  .icon-btn {
+    width: 40px;   /* touch friendly */
+    height: 40px;
   }
 
   .admin {
-    padding: 6px 10px;
-    font-size: 12px;
+    padding: 10px 14px; /* बेहतर thumb hit-area */
   }
 }
 
-/* Ultra small / old Android */
-@media (max-width: 360px) {
-  .logo-great,
-  .logo-vision {
-    font-size: 14px;
-  }
-
-  .admin {
-    display: none; /* optional */
-  }
+/* 🔥 MAIN FIX: button must be a row */
+.user-profile-btn {
+  all: unset;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;            /* ↓ reduced */
+  cursor: pointer;
+  padding: 4px 8px;    /* ↓ reduced */
+  border-radius: 20px; /* slightly smaller */
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 1px;     /* ↓ smaller text */
 }
+
+/* keep your original profile style (optional) */
+.user-profile {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+/* image should never shrink */
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent);
+  flex-shrink: 0;
+}
+
+/* text must stay inline */
+.user-email {
+  font-size: 14px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;
+  color: white;
+  display: inline-block;  /* 🔥 CRITICAL */
+}
+

@@ -1,0 +1,307 @@
+/* ================= LOGIN MODAL ================= */
+
+.login-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* ===== CONTAINER (VERTICAL STYLE) ===== */
+.login-container {
+  background-color: rgba(2, 6, 23, 0.8);
+  background-image:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%) -50px 0,
+    linear-gradient(225deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%) -50px 0;
+  background-size: 100px 100px;
+  background-blend-mode: overlay;
+
+  width: 100%;
+  max-width: 380px;
+  padding: 24px 40px 60px 40px; /* 150px हटाया — unnecessary था */
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+
+  /* 🔥 IMPORTANT FIX */
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* Glossy translucent layer */
+.login-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+/* ================= HEADER ================= */
+
+.login-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px; /* पहले 20px था → कम किया */
+}
+
+.login-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+}
+
+.theme-icon {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: white;
+}
+
+/* ================= DIVIDERS ================= */
+
+.divider {
+  border-top: 1px solid rgba(221, 221, 221, 0.6);
+  width: 90%;
+  margin: 6px auto 36px auto; /* centered + vertical rhythm */
+}
+
+.divider-footer {
+  border-top: 1px solid rgba(221, 221, 221, 0.6);
+  width: 90%;
+  margin: 22px auto 12px auto;
+}
+
+/* ================= BODY ================= */
+
+.login-body {
+  margin: 8px 0 22px 0;
+  flex-grow: 1; /* 🔥 यह divider + footer को नीचे push करेगा */
+}
+
+/* Regular text */
+.main-text {
+  color: white;
+  text-align: center;
+  margin-bottom: 2px;
+}
+
+.second-text{
+    font-weight: bold;
+    margin-top: 2px;
+}
+
+/* Hover effect for 'Great' & 'Vision' */
+.highlight-text {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.great,
+.vision {
+  color: white;
+}
+
+.great:hover {
+  color: #ef4444; /* cleaner red */
+}
+
+.vision:hover {
+  color: #3b82f6; /* cleaner blue */
+}
+
+.second-text:hover{
+    color: #00aaffbf;
+}
+
+/* ================= GOOGLE BUTTON ================= */
+
+.google-btn {
+  background-color: white;
+  color: black;
+  padding: 12px 18px; /* थोड़ा taller */
+  font-size: 16px;
+  border: none;
+  border-radius: 10px; /* rounder → modern feel */
+  cursor: pointer;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.google-btn .fab {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.google-btn.light {
+  background-color: var(--btn-bg-light);
+}
+
+.google-btn:hover {
+  background-color: #00aaffbf;
+}
+
+.google-btn.light:hover {
+  background-color: var(--btn-hover-light);
+}
+
+/* ================= FOOTER ================= */
+
+.login-footer {
+  font-size: 14px;
+  color: #888;
+  margin-top: 14px;
+  padding-bottom: 16px; /* footer नीचे जाएगा, container नहीं बढ़ेगा */
+}
+
+
+.login-footer:hover {
+  color: #c1351d;
+}
+
+.login-footer:active {
+  cursor: pointer;
+}
+.divider-footer {
+  border-top: 1px solid rgba(221, 221, 221, 0.6);
+  width: 90%;
+  margin: 24px auto 12px auto;
+}
+
+/* ================= ANDROID RESPONSIVE ================= */
+
+/* Large phones & small tablets */
+@media (max-width: 768px) {
+  .login-container {
+    max-width: 340px;
+    padding: 20px 20px 48px 20px; /* bottom कम रखा ताकि container छोटा रहे */
+  }
+
+  .login-title {
+    font-size: 22px;
+  }
+
+  .google-btn {
+    width: 90%;       /* touch-friendly */
+    padding: 12px 16px;
+  }
+
+  .divider,
+  .divider-footer {
+    width: 92%;
+  }
+}
+
+/* Small Android phones (most common) */
+@media (max-width: 480px) {
+  .login-container {
+    max-width: 300px;
+    padding: 18px 16px 44px 16px;
+    border-radius: 16px; /* थोड़ा कम round */
+  }
+
+  .login-header {
+    margin-bottom: 8px;
+  }
+
+  .login-title {
+    font-size: 20px;
+  }
+
+  .google-btn {
+    width: 100%;      /* full width on small screens */
+    padding: 12px 14px;
+    font-size: 15px;
+  }
+
+  .divider {
+    margin: 6px auto 28px auto;
+  }
+
+  .divider-footer {
+    margin: 20px auto 10px auto;
+  }
+
+  .login-footer {
+    font-size: 13px;
+    padding-bottom: 12px;
+  }
+}
+
+/* Ultra small / old Android (≤ 360px) */
+@media (max-width: 360px) {
+  .login-container {
+    max-width: 280px;
+    padding: 16px 14px 40px 14px;
+    border-radius: 14px;
+  }
+
+  .login-title {
+    font-size: 19px;
+  }
+
+  .google-btn {
+    font-size: 14px;
+  }
+}
+
+.logged-in-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.login-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent);
+}
+
+.login-email {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.logout-btn {
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: none;
+  background: #ff4444;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background: #d63031;
+}

@@ -127,9 +127,14 @@ const Home = () => {
 >
   Explore Products
 </button>
+<section id="home">
+  {/* Your home section content */}
+</section>
+
 
       </div>
     </section>
+    
   );
 };
 

@@ -1,5 +1,8 @@
 import React from 'react';
 import './Footer.css';  // Import the corresponding CSS file
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInstagram, faDiscord, faReddit, faMastodon, faFacebook, faGoogle, faYoutube, } from '@fortawesome/free-brands-svg-icons';
+
 
 const Footer: React.FC = () => {
   return (
@@ -19,15 +22,16 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="footer-section community">
-          <h3>COMMUNITY</h3>
-          <ul>
-            <li><a href="#">GitHub</a></li>
-            <li><a href="#">Discord</a></li>
-            <li><a href="#">Reddit</a></li>
-            <li><a href="#">Mastodon</a></li>
-            <li><a href="#">Merch</a></li>
-          </ul>
-        </div>
+  <h3>COMMUNITY</h3>
+  <ul>
+    <li><a href="#"><FontAwesomeIcon icon={faInstagram} /> Instagram</a></li>
+    <li><a href="#"><FontAwesomeIcon icon={faFacebook} />  Facebook</a></li>
+    <li><a href="#"><FontAwesomeIcon icon={faGoogle} />   Google</a></li>
+    <li><a href="#"><FontAwesomeIcon icon={faYoutube} /> Youtube</a></li>
+    
+  </ul>
+</div>
+
 
         <div className="footer-section legal">
           <h3>LEGAL</h3>
@@ -44,6 +48,10 @@ const Footer: React.FC = () => {
         <p>&copy; {new Date().getFullYear()}  SHIVAM ELECTRICALS PALIGANJ </p>
         <p>Website designed by <a href="https://instagram.com?=shi_vam__9">Shivam Kumar</a></p>
       </div>
+      <section id="about">
+  {/* Your About content */}
+</section>
+
     </footer>
   );
 };

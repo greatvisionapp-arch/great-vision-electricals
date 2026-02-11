@@ -1,32 +1,58 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
+import Header from "./components/Header/Header";
+import Home from "./components/Home/Home";
+import BelowHome from "./components/BelowHome/BelowHome";
+import CookieConsent from "./components/Cookies/CookieConsent";
+import Community from "./components/Community/Community";
+import Footer from "./components/Footer/Footer";
+import Login from "./components/login/Login";
+import { auth } from "./lib/firebase";              // 🔥 IMPORTANT
+import { onAuthStateChanged } from "firebase/auth"; // 🔥 IMPORTANT
 
-// Import your components
-import Header from './components/Header/Header';
-import Home from './components/Home/Home';
-import BelowHome from './components/BelowHome/BelowHome';
-import CookieConsent from './components/Cookies/CookieConsent';
-import Community from './components/Community/Community';  // Add the Community component
-import Footer from './components/footer/Footer';
-  // Import the Footer component
+const App = () => {
+  const [isLoginModalOpen, setLoginModalOpen] = useState(false);
+  const [user, setUser] = useState(null);
 
-const App: React.FC = () => {
+  // 🔥 Track auth state once
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, (u) => {
+      setUser(u);
+    });
+    return () => unsub();
+  }, []);
+
+  useEffect(() => {
+    // अगर user already logged in है → कुछ मत दिखाओ
+    if (user) return;
+
+    const lastShown = localStorage.getItem("loginModalLastShown");
+    const now = Date.now();
+
+    if (!lastShown || now - Number(lastShown) > 2 * 60 * 1000) {
+      const timer = setTimeout(() => {
+        setLoginModalOpen(true);
+        localStorage.setItem("loginModalLastShown", Date.now().toString());
+      }, 5000); // 5 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [user]); // 🔥 IMPORTANT dependency
+
   return (
     <>
-      {/* Header section */}
-      <Header />
+      <Header openLoginModal={() => setLoginModalOpen(true)} />
 
-      {/* Main content sections */}
       <Home />
       <BelowHome />
-      <Community />  {/* Include the Community component */}
-
-      {/* Cookie consent at the bottom */}
+      <Community />
       <CookieConsent />
+      <Footer />
 
-      {/* Footer section */}
-      <Footer />  {/* Render the Footer component here */}
+      {isLoginModalOpen && (
+        <Login closeModal={() => setLoginModalOpen(false)} />
+      )}
     </>
   );
-}
+};
 
 export default App;
