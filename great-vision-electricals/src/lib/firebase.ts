@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC1yZeOd86hjUBG13D9ll-VmMwU-Wp0okM",
+  apiKey: "import.meta.env.VITE_FIREBASE_API_KEY",
   authDomain: "greatvisionelectricals.firebaseapp.com",
   projectId: "greatvisionelectricals",
   storageBucket: "greatvisionelectricals.firebasestorage.app",
