@@ -4,7 +4,7 @@ import Home from "./components/Home/Home";
 import BelowHome from "./components/BelowHome/BelowHome";
 import CookieConsent from "./components/Cookies/CookieConsent";
 import Community from "./components/Community/Community";
-import Footer from "./components/Footer/Footer";
+import Footer from "./components/footer/Footer";
 import Login from "./components/login/Login";
 import { auth } from "./lib/firebase";              // 🔥 IMPORTANT
 import { onAuthStateChanged } from "firebase/auth"; // 🔥 IMPORTANT
