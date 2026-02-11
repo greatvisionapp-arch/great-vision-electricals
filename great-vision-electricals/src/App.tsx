@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import Owner from "./components/Owner/Owner";
@@ -8,14 +9,19 @@ import CookieConsent from "./components/Cookies/CookieConsent";
 import Community from "./components/Community/Community";
 import Footer from "./components/footer/Footer";
 import Login from "./components/login/Login";
-import PrivacyPolicy from "./components/Privacy/PrivacyPolicy";
 import { auth } from "./lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
+
+// ✅ Lazy load Privacy Policy (better performance + no chunk warning)
+const PrivacyPolicy = lazy(
+  () => import("./components/Privacy/PrivacyPolicy")
+);
 
 const App = () => {
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
   const [user, setUser] = useState(null);
 
+  // Track auth state
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (u) => {
       setUser(u);
@@ -23,6 +29,7 @@ const App = () => {
     return () => unsub();
   }, []);
 
+  // Show login modal logic
   useEffect(() => {
     if (user) return;
 
@@ -57,7 +64,14 @@ const App = () => {
           }
         />
 
-        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route
+          path="/privacy"
+          element={
+            <Suspense fallback={<div style={{ padding: "24px" }}>Loading...</div>}>
+              <PrivacyPolicy />
+            </Suspense>
+          }
+        />
       </Routes>
 
       <Footer />
