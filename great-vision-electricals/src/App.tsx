@@ -8,7 +8,7 @@ import CookieConsent from "./components/Cookies/CookieConsent";
 import Community from "./components/Community/Community";
 import Footer from "./components/footer/Footer";
 import Login from "./components/login/Login";
-import PrivacyPolicy from "./Components/Privacy/PrivacyPolicy";
+import PrivacyPolicy from "./components/Privacy/PrivacyPolicy";
 import { auth } from "./lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
