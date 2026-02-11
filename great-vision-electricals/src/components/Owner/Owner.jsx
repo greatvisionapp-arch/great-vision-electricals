@@ -8,6 +8,9 @@ const IMAGES = [
   "/image/img4.png",
   "/image/img5.jpg",
   "/image/img6.jpg",
+  "/image/img7.jpg",
+  "/image/img8.jpg",
+  "/image/img9.jpg",
 ];
 
 export default function Owner() {
