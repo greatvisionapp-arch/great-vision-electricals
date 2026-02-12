@@ -42,7 +42,7 @@ const Header = ({ openLoginModal }: { openLoginModal: () => void }) => {
             <Link to="about" smooth={true} duration={500}>
               <i className="fa-solid fa-circle-info"></i> About
             </Link>
-            <Link to="contact" smooth={true} duration={500}>
+            <Link to="/contact" smooth={true} duration={500}>
               <i className="fa-solid fa-envelope"></i> Contact
             </Link>
           </nav>
