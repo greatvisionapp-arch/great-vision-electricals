@@ -7,40 +7,56 @@
   --accent: #2563eb;
 }
 
+/* Page background */
+body {
+  background: var(--bg-alt);
+}
+
+/* Main container */
 .privacy-container {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 48px 24px 64px;
+  max-width: 900px;
+  margin: 48px auto;
+  padding: 48px 32px 56px;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
   color: var(--text-primary);
   background: var(--bg-main);
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
 }
 
+/* Main heading centered */
 .privacy-container h1 {
-  font-size: 2rem;
+  font-size: 2.1rem;
   font-weight: 700;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   letter-spacing: -0.01em;
+  text-align: center;
 }
 
+/* Effective date centered */
 .privacy-container .effective-date {
   color: var(--text-secondary);
   font-size: 0.95rem;
   margin-bottom: 32px;
+  text-align: center;
 }
 
+/* Sections */
 .privacy-section {
   margin-top: 28px;
-  padding-top: 20px;
+  padding-top: 22px;
   border-top: 1px solid var(--border-color);
 }
 
+/* Section headings */
 .privacy-container h2 {
-  font-size: 1.25rem;
+  font-size: 1.28rem;
   font-weight: 700;
   margin-bottom: 10px;
+  color: var(--text-primary);
 }
 
+/* Paragraph text */
 .privacy-container p {
   font-size: 1rem;
   line-height: 1.7;
@@ -48,18 +64,21 @@
   margin-bottom: 10px;
 }
 
+/* Lists */
 .privacy-container ul {
-  margin: 8px 0 16px 18px;
+  margin: 10px 0 18px 20px;
 }
 
 .privacy-container li {
   margin-bottom: 6px;
   line-height: 1.6;
+  color: var(--text-secondary);
 }
 
+/* Contact box */
 .contact-box {
-  margin-top: 16px;
-  padding: 14px 16px;
+  margin-top: 18px;
+  padding: 16px 18px;
   background: var(--bg-alt);
   border-radius: 10px;
   border: 1px solid var(--border-color);
@@ -69,12 +88,73 @@
   color: var(--text-primary);
 }
 
+/* Hover subtle highlight */
+.privacy-section:hover {
+  background: rgba(0,0,0,0.01);
+  border-radius: 8px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+/* Tablet */
 @media (max-width: 768px) {
+
   .privacy-container {
-    padding: 32px 16px 48px;
+    margin: 28px 12px;
+    padding: 32px 18px 40px;
   }
 
   .privacy-container h1 {
-    font-size: 1.75rem;
+    font-size: 1.7rem;
+  }
+
+  .privacy-container h2 {
+    font-size: 1.15rem;
+  }
+
+  .privacy-container p,
+  .privacy-container li {
+    font-size: 0.95rem;
+  }
+
+}
+
+/* Android small devices */
+@media (max-width: 480px) {
+
+  .privacy-container {
+    margin: 18px 8px;
+    padding: 24px 14px 32px;
+    border-radius: 10px;
+  }
+
+  .privacy-container h1 {
+    font-size: 1.45rem;
+  }
+
+  .privacy-container h2 {
+    font-size: 1.05rem;
+  }
+
+  .privacy-container p,
+  .privacy-container li {
+    font-size: 0.92rem;
+  }
+
+}
+
+/* Smooth appearance animation */
+.privacy-container {
+  animation: fadeIn 0.35s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

@@ -104,8 +104,8 @@
   background: linear-gradient(
     to right,
     transparent,
-    red,
-    blue,
+    rgb(28, 28, 28),
+    rgb(25, 25, 25),
     transparent
   );
   margin: 16px 0;
@@ -137,3 +137,4 @@
     margin-right: 12px;
   }
 }
+

@@ -1,0 +1,143 @@
+/* Page background */
+body {
+  background: #f4f6f8;
+}
+
+/* Main container */
+.terms-container {
+  max-width: 850px;
+  margin: 50px auto;
+  padding: 40px 32px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.7;
+  color: #2c2c2c;
+  text-align: left;
+}
+
+/* Main heading */
+.terms-container h1 {
+  text-align: center;
+  font-size: 34px;
+  margin-bottom: 25px;
+  color: #111;
+  font-weight: 600;
+  border-bottom: 2px solid #eaeaea;
+  padding-bottom: 12px;
+}
+
+/* Section headings */
+.terms-container h2 {
+  font-size: 20px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  color: #1565c0;
+  font-weight: 600;
+}
+
+/* Paragraph text */
+.terms-container p {
+  font-size: 15.5px;
+  margin-bottom: 14px;
+  color: #444;
+}
+
+/* Lists */
+.terms-container ul {
+  margin-left: 18px;
+  margin-bottom: 16px;
+}
+
+.terms-container li {
+  font-size: 15.5px;
+  margin-bottom: 6px;
+}
+
+/* Bold text */
+.terms-container strong {
+  color: #000;
+  font-weight: 600;
+}
+
+/* Center contact section */
+.terms-container h2:last-of-type {
+  text-align: center;
+}
+
+.terms-container h2:last-of-type + p {
+  text-align: center;
+}
+
+/* Tablet responsive */
+@media (max-width: 768px) {
+
+  .terms-container {
+    margin: 30px 14px;
+    padding: 28px 20px;
+  }
+
+  .terms-container h1 {
+    font-size: 26px;
+  }
+
+  .terms-container h2 {
+    font-size: 18px;
+  }
+
+  .terms-container p,
+  .terms-container li {
+    font-size: 14.5px;
+  }
+
+}
+
+/* Android mobile responsive */
+@media (max-width: 480px) {
+
+  .terms-container {
+    margin: 20px 10px;
+    padding: 22px 16px;
+    border-radius: 10px;
+  }
+
+  .terms-container h1 {
+    font-size: 22px;
+  }
+
+  .terms-container h2 {
+    font-size: 16px;
+  }
+
+  .terms-container p,
+  .terms-container li {
+    font-size: 13.8px;
+  }
+
+}
+
+/* Large desktop */
+@media (min-width: 1200px) {
+
+  .terms-container {
+    max-width: 900px;
+  }
+
+}
+
+/* Smooth appearance */
+.terms-container {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

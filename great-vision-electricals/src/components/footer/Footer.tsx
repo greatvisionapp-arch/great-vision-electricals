@@ -60,12 +60,12 @@ const Footer: React.FC = () => {
   </a>
 </li>
 <li>
-  <a href="#">
+  <a href="/terms">
     <i className="fa-solid fa-file-contract"></i> Terms
   </a>
 </li>
 <li>
-  <a href="#">
+  <a href="/Contact">
     <i className="fa-solid fa-phone"></i> Contact
   </a>
 </li>

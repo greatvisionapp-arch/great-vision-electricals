@@ -9,13 +9,23 @@ import CookieConsent from "./components/Cookies/CookieConsent";
 import Community from "./components/Community/Community";
 import Footer from "./components/footer/Footer";
 import Login from "./components/login/Login";
+
 import { auth } from "./lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
-// ✅ Lazy load Privacy Policy (better performance + no chunk warning)
-const PrivacyPolicy = lazy(
-  () => import("./components/Privacy/PrivacyPolicy")
+// ✅ Lazy loaded pages
+const PrivacyPolicy = lazy(() =>
+  import("./components/Privacy/PrivacyPolicy")
 );
+
+const TermsConditions = lazy(() =>
+  import("./components/TermsConditions/TermsConditions")
+);
+
+const Contact = lazy(() =>
+  import("./components/Contact/Contact.jsx")
+);
+
 
 const App = () => {
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
@@ -29,7 +39,7 @@ const App = () => {
     return () => unsub();
   }, []);
 
-  // Show login modal logic
+  // Login modal logic
   useEffect(() => {
     if (user) return;
 
@@ -46,39 +56,62 @@ const App = () => {
     }
   }, [user]);
 
+  const LoadingFallback = (
+    <div style={{ padding: "24px", textAlign: "center" }}>
+      Loading...
+    </div>
+  );
+
   return (
     <Router>
+
       <Header openLoginModal={() => setLoginModalOpen(true)} />
 
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Home />
-              <Owner />
-              <BelowHome />
-              <Community />
-              <CookieConsent />
-            </>
-          }
-        />
+      <Suspense fallback={LoadingFallback}>
+        <Routes>
 
-        <Route
-          path="/privacy"
-          element={
-            <Suspense fallback={<div style={{ padding: "24px" }}>Loading...</div>}>
-              <PrivacyPolicy />
-            </Suspense>
-          }
-        />
-      </Routes>
+          {/* Home */}
+          <Route
+            path="/"
+            element={
+              <>
+                <Home />
+                <Owner />
+                <BelowHome />
+                <Community />
+                <CookieConsent />
+              </>
+            }
+          />
+
+          {/* Privacy Policy */}
+          <Route
+            path="/privacy"
+            element={<PrivacyPolicy />}
+          />
+
+          {/* Terms and Conditions */}
+          <Route
+            path="/terms"
+            element={<TermsConditions />}
+          />
+
+            {/* FIXED CONTACT ROUTE */}
+    <Route
+      path="/contact"
+      element={<Contact />}
+    />
+
+        </Routes>
+      </Suspense>
 
       <Footer />
 
+      {/* Login Modal */}
       {isLoginModalOpen && (
         <Login closeModal={() => setLoginModalOpen(false)} />
       )}
+
     </Router>
   );
 };

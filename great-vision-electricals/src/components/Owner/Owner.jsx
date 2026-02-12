@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import "./Owner.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const IMAGES = [
   "/image/img1.jpg",
@@ -84,6 +85,8 @@ export default function Owner() {
       
     </div>
     <div className="full-divider"></div>
+
+
   </>
 );
 
