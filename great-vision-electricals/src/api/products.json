@@ -1,0 +1,34 @@
+{
+  "name": "Havells FAB BLDC Ceiling Fan",
+  "type": "mine",
+  "active": true,
+
+  "price": 1870,
+  "mrp": 2150,
+  "offer_enabled": true,
+
+  "brand": "Havells",
+  "warranty": "1 Year",
+
+  "short_description": "Energy efficient BLDC fan with remote control",
+  "description": "Premium BLDC ceiling fan with remote control, timer support, silent motor technology and modern design.",
+
+  "stock": "10 left",
+
+  "colour": "Midnight",
+  "electric_fan_design": "Ceiling Fan",
+  "power_source": "Corded Electric",
+  "style": "FAB BLDC",
+  "product_dimensions": "56.5D x 21W x 25.5H Centimeters",
+  "room_type": "Bedroom, Dining Room, Home Office, Kids Room, Kitchen",
+  "special_feature": "Remote Controlled, Safety Certified, Timer",
+  "recommended_uses": "Air Circulation, Cooling, Drying, Exhausting, Ventilating",
+  "mounting_type": "Ceiling Mount",
+
+  "main_image": "fan_main.jpg",
+  "images": [
+    "fan_side.jpg",
+    "fan_top.jpg",
+    "fan_remote.jpg"
+  ]
+}

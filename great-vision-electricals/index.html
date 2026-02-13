@@ -36,30 +36,37 @@
     <link rel="manifest" href="/site.webmanifest" />
 
     <!-- ✅ WEBSITE SCHEMA (CORRECT SIGNAL FOR SITE NAME) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Great Vision Electricals",
-      "url": "https://greatvision.shop",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Great Vision Electricals"
-      }
-    }
-    </script>
+    <!-- ✅ FOUNDER (OWNER) SCHEMA -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Nirbhay Kumar",
+  "jobTitle": "Founder & Owner",
+  "image": "https://greatvision.shop/greatvisionowner.png",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Great Vision Electricals",
+    "url": "https://greatvision.shop"
+  }
+}
+</script>
 
-    <!-- ✅ ORGANIZATION SCHEMA (FIXED LOGO ISSUE) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Great Vision Electricals",
-      "url": "https://greatvision.shop",
-      "logo": "https://greatvision.shop/favicon.png",
-      "image": "https://greatvision.shop/favicon.png"
-    }
-    </script>
+<!-- ✅ WEBSITE DESIGNER SCHEMA -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Shivam Kumar",
+  "jobTitle": "Website Designer",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Great Vision Electricals",
+    "url": "https://greatvision.shop"
+  }
+}
+</script>
+
 
   </head>
 

@@ -21,6 +21,7 @@ const Explore = () => {
       navigate(`/product/${link}`); // only slug
     }
   };
+  
 
   /* ================= LOCAL FALLBACK ================= */
 
@@ -78,6 +79,13 @@ const Explore = () => {
     };
 
     loadBanners();
+     document.body.classList.remove("dark-theme");
+  document.body.classList.add("light-theme");
+
+  return () => {
+    // Optional: jab page leave kare tab remove bhi kar sakte ho
+    document.body.classList.remove("light-theme");
+  };
   }, []);
 
   /* ================= AUTO SLIDERS ================= */

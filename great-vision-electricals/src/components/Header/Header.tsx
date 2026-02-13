@@ -14,6 +14,7 @@ interface HeaderProps {
 const Header = ({ openLoginModal, theme, setTheme }: HeaderProps) => {
   const [user, setUser] = useState<User | null>(null);
   const location = useLocation();
+  
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (u) => {
@@ -44,9 +45,15 @@ const Header = ({ openLoginModal, theme, setTheme }: HeaderProps) => {
                   <i className="fa-solid fa-house"></i> Home
                 </ScrollLink>
 
-                <ScrollLink to="about" smooth duration={500}>
-                  <i className="fa-solid fa-circle-info"></i> About
-                </ScrollLink>
+                <ScrollLink 
+  to="footer" 
+  smooth={true} 
+  duration={500}
+  offset={-80}
+>
+  <i className="fa-solid fa-circle-info"></i> About
+</ScrollLink>
+
               </>
             ) : (
               <RouterLink to="/">

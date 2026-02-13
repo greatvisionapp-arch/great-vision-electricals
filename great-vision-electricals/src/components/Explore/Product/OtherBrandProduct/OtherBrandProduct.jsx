@@ -1,64 +1,88 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./OtherBrandProduct.css";
+import { getOtherProducts } from "../../../../api/myproduct";
+import pb from "../../../../lib/pb";
+import { useNavigate } from "react-router-dom";
 
 const OtherBrandProduct = ({ formatPrice }) => {
 
-  const products = [
-    {
-      id: 1,
-      name: "Ceiling LED Light",
-      price: 1199,
-      image: "https://images.pexels.com/photos/5824901/pexels-photo-5824901.jpeg?auto=compress&cs=tinysrgb&w=1200"
-    },
-    {
-      id: 2,
-      name: "Decorative Wall Lamp",
-      price: 999,
-      image: "https://images.pexels.com/photos/5824518/pexels-photo-5824518.jpeg?auto=compress&cs=tinysrgb&w=1200"
-    },
-    {
-      id: 3,
-      name: "Luxury Pendant Light",
-      price: 2499,
-      image: "https://images.pexels.com/photos/5824516/pexels-photo-5824516.jpeg?auto=compress&cs=tinysrgb&w=1200"
-    },
-    {
-      id: 4,
-      name: "Modern Wall Sconce",
-      price: 1599,
-      image: "https://images.pexels.com/photos/5824515/pexels-photo-5824515.jpeg?auto=compress&cs=tinysrgb&w=1200"
+  const navigate = useNavigate();
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    async function loadProducts() {
+      try {
+        const data = await getOtherProducts();
+        setProducts(Array.isArray(data) ? data : []);
+      } catch (err) {
+        console.error("OtherBrand Fetch Error:", err);
+        setProducts([]);
+      }
     }
-  ];
+
+    loadProducts();
+  }, []);
 
   return (
     <div className="otherproduct-grid">
-      {products.map((item) => (
-        <div key={item.id} className="otherproduct-card">
 
-          <div className="otherproduct-img">
-            <img
-              src={item.image}
-              alt={item.name}
-              loading="lazy"
-            />
+      {products.length === 0 && (
+        <p style={{ textAlign: "center" }}>
+          No products available
+        </p>
+      )}
+
+      {products.map((item) => {
+
+        let imageSrc = "";
+
+        try {
+          if (item.main_image) {
+            imageSrc = pb.files.getURL(item, item.main_image);
+          } else if (item.images?.length > 0) {
+            imageSrc = pb.files.getURL(item, item.images[0]);
+          }
+        } catch (e) {
+          console.error("Image error:", e);
+        }
+
+        return (
+          <div key={item.id} className="otherproduct-card">
+
+            <div className="otherproduct-img">
+              {imageSrc && (
+                <img
+                  src={imageSrc}
+                  alt={item.name || "product"}
+                  loading="lazy"
+                />
+              )}
+            </div>
+
+            <div className="otherproduct-content">
+              <h3 className="otherproduct-name">
+                {item.name || "No Name"}
+              </h3>
+
+              <p className="otherproduct-price">
+                {formatPrice
+                  ? formatPrice(item.price || 0)
+                  : `₹${item.price || 0}`}
+              </p>
+
+              <button
+                className="otherproduct-btn"
+                onClick={() => navigate(`/product/${item.id}`)}
+              >
+                View Details
+              </button>
+
+            </div>
+
           </div>
+        );
+      })}
 
-          <div className="otherproduct-content">
-            <h3 className="otherproduct-name">
-              {item.name}
-            </h3>
-
-            <p className="otherproduct-price">
-              {formatPrice(item.price)}
-            </p>
-
-            <button className="otherproduct-btn">
-              View Details
-            </button>
-          </div>
-
-        </div>
-      ))}
     </div>
   );
 };

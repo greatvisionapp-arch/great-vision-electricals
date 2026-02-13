@@ -37,24 +37,28 @@ const Explore = lazy(() =>
   import("./components/Explore/Explore.jsx")
 );
 
+const ViewDetails = lazy(() =>
+  import("./components/Explore/Product/ViewDetails/ViewDetails.jsx")
+);
+
 
 // Layout
 const Layout = ({ children }) => {
-
   const location = useLocation();
 
   const hideFooterRoutes = ["/explore"];
+  const isProductRoute = location.pathname.startsWith("/product");
 
   return (
     <>
       {children}
-
-      {!hideFooterRoutes.includes(location.pathname) && (
-        <Footer />
-      )}
+      {!hideFooterRoutes.includes(location.pathname) &&
+        !isProductRoute && <Footer />}
     </>
   );
 };
+
+
 
 
 const App = () => {
@@ -164,6 +168,9 @@ const App = () => {
             <Route path="/contact" element={<Contact />} />
 
             <Route path="/explore" element={<Explore />} />
+            <Route path="/product/:id" element={<ViewDetails />} />
+
+
 
           </Routes>
 
