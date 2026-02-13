@@ -1,5 +1,10 @@
 import React, { useEffect, useState, lazy, Suspense } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
@@ -10,10 +15,12 @@ import Community from "./components/Community/Community";
 import Footer from "./components/footer/Footer";
 import Login from "./components/login/Login";
 
+import Guides from "./components/Guides/Guides.jsx";
+import AdSense from "./components/AdSense/AdSense.jsx";
+
 import { auth } from "./lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
-// ✅ Lazy loaded pages
 const PrivacyPolicy = lazy(() =>
   import("./components/Privacy/PrivacyPolicy")
 );
@@ -26,35 +33,86 @@ const Contact = lazy(() =>
   import("./components/Contact/Contact.jsx")
 );
 
+const Explore = lazy(() =>
+  import("./components/Explore/Explore.jsx")
+);
+
+
+// Layout
+const Layout = ({ children }) => {
+
+  const location = useLocation();
+
+  const hideFooterRoutes = ["/explore"];
+
+  return (
+    <>
+      {children}
+
+      {!hideFooterRoutes.includes(location.pathname) && (
+        <Footer />
+      )}
+    </>
+  );
+};
+
 
 const App = () => {
+
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
+
   const [user, setUser] = useState(null);
 
-  // Track auth state
+  const [theme, setTheme] = useState("dark");
+
+
   useEffect(() => {
+
+    document.documentElement.setAttribute("data-theme", theme);
+
+  }, [theme]);
+
+
+  useEffect(() => {
+
     const unsub = onAuthStateChanged(auth, (u) => {
+
       setUser(u);
+
     });
+
     return () => unsub();
+
   }, []);
 
-  // Login modal logic
+
   useEffect(() => {
+
     if (user) return;
 
     const lastShown = localStorage.getItem("loginModalLastShown");
+
     const now = Date.now();
 
-    if (!lastShown || now - Number(lastShown) > 2 * 60 * 1000) {
+    if (!lastShown || now - Number(lastShown) > 120000) {
+
       const timer = setTimeout(() => {
+
         setLoginModalOpen(true);
-        localStorage.setItem("loginModalLastShown", Date.now().toString());
+
+        localStorage.setItem(
+          "loginModalLastShown",
+          Date.now().toString()
+        );
+
       }, 5000);
 
       return () => clearTimeout(timer);
+
     }
+
   }, [user]);
+
 
   const LoadingFallback = (
     <div style={{ padding: "24px", textAlign: "center" }}>
@@ -62,58 +120,64 @@ const App = () => {
     </div>
   );
 
+
   return (
     <Router>
 
-      <Header openLoginModal={() => setLoginModalOpen(true)} />
+      <Header
+        theme={theme}
+        setTheme={setTheme}
+        openLoginModal={() => setLoginModalOpen(true)}
+      />
 
       <Suspense fallback={LoadingFallback}>
-        <Routes>
 
-          {/* Home */}
-          <Route
-            path="/"
-            element={
-              <>
-                <Home />
-                <Owner />
-                <BelowHome />
-                <Community />
-                <CookieConsent />
-              </>
-            }
-          />
+        <Layout>
 
-          {/* Privacy Policy */}
-          <Route
-            path="/privacy"
-            element={<PrivacyPolicy />}
-          />
+          <Routes>
 
-          {/* Terms and Conditions */}
-          <Route
-            path="/terms"
-            element={<TermsConditions />}
-          />
+            <Route
+              path="/"
+              element={
+                <>
+                  <Home />
 
-            {/* FIXED CONTACT ROUTE */}
-    <Route
-      path="/contact"
-      element={<Contact />}
-    />
+                  <Owner />
 
-        </Routes>
+                  <BelowHome />
+
+                  <Guides />
+
+                  <AdSense />
+
+                  <Community />
+
+                  <CookieConsent />
+                </>
+              }
+            />
+
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+
+            <Route path="/terms" element={<TermsConditions />} />
+
+            <Route path="/contact" element={<Contact />} />
+
+            <Route path="/explore" element={<Explore />} />
+
+          </Routes>
+
+        </Layout>
+
       </Suspense>
 
-      <Footer />
-
-      {/* Login Modal */}
       {isLoginModalOpen && (
         <Login closeModal={() => setLoginModalOpen(false)} />
       )}
 
     </Router>
   );
+
 };
 
 export default App;

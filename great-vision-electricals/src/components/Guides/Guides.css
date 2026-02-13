@@ -1,0 +1,155 @@
+/* ================= THEME VARIABLES ================= */
+
+:root {
+  --page-bg: #ffffff;
+  --card: #f8fafc;
+  --border: #e2e8f0;
+  --text: #0f172a;
+  --muted: #475569;
+  --accent: #14b8a6;
+}
+
+:root[data-theme="dark"] {
+  --page-bg: #020617;   /* FULL PAGE DARK */
+  --card: #0f172a;
+  --border: #1e293b;
+  --text: #ffffff;
+  --muted: #cbd5e1;
+  --accent: #14b8a6;
+}
+
+/* ================= GLOBAL PAGE ================= */
+
+html,
+body {
+  background-color: var(--page-bg);
+  margin: 0;
+  padding: 0;
+  transition: background 0.3s ease;
+}
+
+/* ================= SECTION ================= */
+
+.guides {
+  padding: 80px 20px;
+  background: transparent;  /* important */
+  color: var(--text);
+  max-width: 1200px;
+  margin: auto;
+  transition: color 0.3s ease;
+}
+
+/* ================= BUTTON ================= */
+
+.guides-toggle {
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 22px;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--text);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.guides-toggle:hover {
+  border-color: var(--accent);
+}
+
+.guides-toggle.active {
+  border-color: var(--accent);
+}
+
+/* ICON */
+
+.toggle-icon {
+  width: 34px;
+  height: 34px;
+  background: var(--border);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s ease;
+}
+
+.toggle-icon.rotate {
+  transform: rotate(180deg);
+}
+
+/* ================= EXPAND ================= */
+
+.guides-expand {
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+.guides-content {
+  padding-top: 60px;
+}
+
+/* ================= ROW LAYOUT ================= */
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 60px;
+  margin-bottom: 80px;
+  align-items: center;
+
+  padding: 40px;
+  border: 1px solid var(--border);  /* FIXED */
+  border-radius: 16px;
+  background: var(--card);
+  transition: 0.3s ease;
+}
+
+/* Optional Hover */
+.row:hover {
+  border-color: var(--accent);
+}
+
+/* Reverse Layout */
+.row.reverse {
+  grid-template-columns: 1.2fr 1fr;
+}
+
+/* ================= IMAGE ================= */
+
+.image-box img {
+  width: 100%;
+  border-radius: 14px;
+  display: block;
+}
+
+/* ================= TEXT ================= */
+
+.text-box h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.text-box p {
+  margin-bottom: 16px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+  .row,
+  .row.reverse {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .guides-content {
+    padding-top: 40px;
+  }
+}

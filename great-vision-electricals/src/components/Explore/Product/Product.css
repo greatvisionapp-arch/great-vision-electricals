@@ -1,0 +1,147 @@
+.product-section {
+  padding: 60px 20px;
+}
+
+.product-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;   /* switch aur products ke beech gap */
+}
+
+.switch-holder {
+  display: flex;
+  padding: 10px 20px;
+  border-radius: 10px;
+
+  background: #f3f3f373;
+
+  box-shadow:
+    4px 4px 8px rgba(0, 0, 0, 0.15),
+    -4px -4px 8px rgba(0, 0, 0, 0.5);
+
+  align-items: center;
+  gap: 15px;
+
+  width: fit-content;
+}
+
+
+
+
+/* Label */
+.switch-label {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Toggle wrapper */
+.switch-toggle {
+  position: relative;
+  height: 30px;
+}
+
+/* Hide checkbox */
+.switch-toggle input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+}
+
+/* Track */
+.switch-toggle input[type="checkbox"] + label {
+  position: relative;
+  display: inline-block;
+  width: 70px;
+  height: 30px;
+  border-radius: 15px;
+  cursor: pointer;
+
+  box-shadow: inset -6px -6px 10px rgba(0, 0, 0, 0.6),
+              inset 6px 6px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* Thumb */
+.switch-toggle input[type="checkbox"] + label::before {
+  content: "OFF";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+
+  width: 32px;
+  height: 22px;
+  border-radius: 12px;
+
+  background: #ff0000;
+  font-size: 11px;
+  text-align: center;
+  line-height: 22px;
+
+  box-shadow: -2px -2px 4px rgba(255,255,255,.5),
+               2px 2px 4px rgba(0,0,0,.25);
+
+  transition: all 0.3s ease-in-out;
+}
+
+/* ON state */
+.switch-toggle input[type="checkbox"]:checked + label::before {
+  left: 34px;
+  content: "ON";
+  color: #fff;
+  background: #00b33c;
+
+  box-shadow: -2px -2px 4px rgba(255,255,255,.5),
+               2px 2px 4px #00b33c;
+}
+/* ================= ANDROID RESPONSIVE ================= */
+
+@media (max-width: 480px) {
+
+  .product-section {
+    padding: 20px 12px;
+  }
+
+  .product-container {
+    width: 100%;
+  }
+
+  /* Switch holder compact */
+  .switch-holder {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    justify-content: space-between;
+  }
+
+  .switch-label {
+    font-size: 12px;
+  }
+
+  /* Smaller toggle */
+  .switch-toggle {
+    height: 28px;
+  }
+
+  .switch-toggle input[type="checkbox"] + label {
+    width: 60px;
+    height: 28px;
+    border-radius: 14px;
+  }
+
+  .switch-toggle input[type="checkbox"] + label::before {
+    width: 26px;
+    height: 18px;
+    font-size: 10px;
+    line-height: 18px;
+    top: 5px;
+    left: 4px;
+  }
+
+  .switch-toggle input[type="checkbox"]:checked + label::before {
+    left: 30px;
+  }
+
+  /* Product spacing */
+  .product-view {
+    margin-top: 25px;
+  }
+
+}

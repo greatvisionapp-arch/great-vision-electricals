@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-scroll";
+import { Link as ScrollLink } from "react-scroll";
+import { Link as RouterLink, useLocation } from "react-router-dom";
 import "./Header.css";
 import { auth } from "../../lib/firebase";
 import { onAuthStateChanged, type User } from "firebase/auth";
 
-const Header = ({ openLoginModal }: { openLoginModal: () => void }) => {
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
-  const [user, setUser] = useState<User | null>(null);
+interface HeaderProps {
+  openLoginModal: () => void;
+  theme: "dark" | "light";
+  setTheme: React.Dispatch<React.SetStateAction<"dark" | "light">>;
+}
 
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
+const Header = ({ openLoginModal, theme, setTheme }: HeaderProps) => {
+  const [user, setUser] = useState<User | null>(null);
+  const location = useLocation();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (u) => {
@@ -27,24 +30,38 @@ const Header = ({ openLoginModal }: { openLoginModal: () => void }) => {
     <>
       <header className="header">
         <div className="header-inner">
-          <div className="logo">
+
+          <RouterLink to="/" className="logo">
             <span className="logo-great">Great</span>
             <span className="logo-vision">Vision</span>
-          </div>
+          </RouterLink>
 
           <nav className="nav">
-            <Link to="home" smooth={true} duration={500}>
-              <i className="fa-solid fa-house"></i> Home
-            </Link>
-            <Link to="store" smooth={true} duration={500}>
-              <i className="fa-solid fa-store"></i> Store
-            </Link>
-            <Link to="about" smooth={true} duration={500}>
-              <i className="fa-solid fa-circle-info"></i> About
-            </Link>
-            <Link to="/contact" smooth={true} duration={500}>
+
+            {location.pathname === "/" ? (
+              <>
+                <ScrollLink to="home" smooth duration={500}>
+                  <i className="fa-solid fa-house"></i> Home
+                </ScrollLink>
+
+                <ScrollLink to="about" smooth duration={500}>
+                  <i className="fa-solid fa-circle-info"></i> About
+                </ScrollLink>
+              </>
+            ) : (
+              <RouterLink to="/">
+                <i className="fa-solid fa-house"></i> Home
+              </RouterLink>
+            )}
+
+            <RouterLink to="/explore">
+              <i className="fa-solid fa-store"></i> Explore
+            </RouterLink>
+
+            <RouterLink to="/contact">
               <i className="fa-solid fa-envelope"></i> Contact
-            </Link>
+            </RouterLink>
+
           </nav>
 
           <div className="actions">
@@ -57,10 +74,7 @@ const Header = ({ openLoginModal }: { openLoginModal: () => void }) => {
             </button>
 
             {user ? (
-              <button
-                className="user-profile-btn"
-                onClick={openLoginModal}
-              >
+              <button className="user-profile-btn" onClick={openLoginModal}>
                 <img
                   src={user.photoURL || "/default-avatar.png"}
                   alt="User"
@@ -77,6 +91,7 @@ const Header = ({ openLoginModal }: { openLoginModal: () => void }) => {
               </button>
             )}
           </div>
+
         </div>
       </header>
 

@@ -1,4 +1,5 @@
 import { useEffect, useState, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import { getHomeSubtitles } from "../../api/homeSubtitles.js";
 import { getHomeBadges } from "../../api/homeBadges.js";
 import "./Home.css";
@@ -14,11 +15,13 @@ const FALLBACK_BADGES = [
 ];
 
 const Home = () => {
+  const navigate = useNavigate();
+
   const [subtitles, setSubtitles] = useState(FALLBACK_SUBTITLES);
   const [badges, setBadges] = useState(FALLBACK_BADGES);
   const [badgeIndex, setBadgeIndex] = useState(0);
 
-  // 🔹 Load subtitles (PocketBase)
+  // 🔹 Load subtitles
   useEffect(() => {
     let mounted = true;
 
@@ -45,13 +48,13 @@ const Home = () => {
     };
   }, []);
 
-  // 🔹 Load badges (SEPARATE collection, ordered)
+  // 🔹 Load badges
   useEffect(() => {
     let mounted = true;
 
     const load = async () => {
       try {
-        const data = await getHomeBadges(); // sorted by order in API
+        const data = await getHomeBadges();
         if (
           mounted &&
           Array.isArray(data) &&
@@ -70,9 +73,10 @@ const Home = () => {
   const safeSubtitles =
     subtitles.length > 0 ? subtitles : FALLBACK_SUBTITLES;
 
-  const safeBadges = badges.length > 0 ? badges : FALLBACK_BADGES;
+  const safeBadges =
+    badges.length > 0 ? badges : FALLBACK_BADGES;
 
-  // 🔹 Badge auto-rotate
+  // 🔹 Badge auto rotate
   useEffect(() => {
     if (safeBadges.length <= 1) return;
 
@@ -83,7 +87,6 @@ const Home = () => {
     return () => clearInterval(badgeTimer);
   }, [safeBadges]);
 
-  // 🔹 Subtitle scroll loop
   const loopList = useMemo(
     () => [...safeSubtitles, ...safeSubtitles],
     [safeSubtitles]
@@ -92,7 +95,6 @@ const Home = () => {
   return (
     <section className="home" id="home">
       <div className="home-container">
-        {/* BADGE (PocketBase → home_badges) */}
         <span className="home-badge">
           <span key={badgeIndex} className="badge-text">
             {safeBadges[badgeIndex]?.text}
@@ -120,21 +122,15 @@ const Home = () => {
           </div>
         </div>
 
-        <button 
-  type="button" 
-  className="home-btn" 
-  onClick={() => window.location.href = "https://shivamelectricals.shop/"}
->
-  Explore Products
-</button>
-<section id="home">
-  {/* Your home section content */}
-</section>
-
-
+        <button
+          type="button"
+          className="home-btn"
+          onClick={() => navigate("/explore")}
+        >
+          Explore Products
+        </button>
       </div>
     </section>
-    
   );
 };
 
