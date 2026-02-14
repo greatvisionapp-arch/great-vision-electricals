@@ -6,44 +6,58 @@
   <!-- Homepage -->
   <url>
     <loc>https://greatvision.shop/</loc>
+    <lastmod>2026-02-15</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Gallery Images -->
+  <!-- Gallery Page -->
   <url>
     <loc>https://greatvision.shop/gallery</loc>
+    <lastmod>2026-02-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+
     <image:image>
       <image:loc>https://greatvision.shop/image/img1.jpg</image:loc>
       <image:title>Great Vision Owner</image:title>
     </image:image>
+
     <image:image>
       <image:loc>https://greatvision.shop/image/img2.jpg</image:loc>
-      <image:title>Gift Distrubing to electrician</image:title>
+      <image:title>Gift Distributing to Electricians</image:title>
     </image:image>
+
     <image:image>
       <image:loc>https://greatvision.shop/image/img3.jpg</image:loc>
       <image:title>Great Vision Shop</image:title>
     </image:image>
+
     <image:image>
       <image:loc>https://greatvision.shop/image/great-vision-new-logo.png</image:loc>
-      <image:title>great vision new logo</image:title>
+      <image:title>Great Vision Official Logo</image:title>
     </image:image>
+
     <image:image>
       <image:loc>https://greatvision.shop/image/img5.jpg</image:loc>
-      <image:title>Great Vision Owner Image</image:title>
+      <image:title>Great Vision Owner Portrait</image:title>
     </image:image>
+
     <image:image>
       <image:loc>https://greatvision.shop/image/img6.jpg</image:loc>
-      <image:title>Great Vision Owner ka photo</image:title>
+      <image:title>Great Vision Team Photo</image:title>
     </image:image>
+
     <image:image>
       <image:loc>https://greatvision.shop/image/great-vision-new-logo-basic.png</image:loc>
-      <image:title>great vision new logo basic</image:title>
+      <image:title>Great Vision Basic Logo Version</image:title>
     </image:image>
+
     <image:image>
       <image:loc>https://greatvision.shop/image/great-vision-new-logo-metallic.png</image:loc>
-      <image:title>great vision new logo metallic</image:title>
+      <image:title>Great Vision Metallic Logo Version</image:title>
     </image:image>
+
   </url>
 
 </urlset>

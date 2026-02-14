@@ -27,52 +27,62 @@ const MyProduct = ({ formatPrice }) => {
     },
   ];
 
-  const [pbProducts, setPbProducts] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [backendLoaded, setBackendLoaded] = useState(false);
 
   useEffect(() => {
     async function loadProducts() {
       try {
         const data = await getMyProducts();
-        setPbProducts(Array.isArray(data) ? data : []);
+
+        if (Array.isArray(data)) {
+          setProducts(data); // direct backend data
+        } else {
+          setProducts([]);
+        }
+
       } catch (err) {
         console.error("PB Fetch Error:", err);
-        setPbProducts([]);
+        setProducts([]);
+      } finally {
+        setBackendLoaded(true);
       }
     }
+
     loadProducts();
   }, []);
 
-  const allProducts = [...localProducts, ...pbProducts];
+  // 🔥 IMPORTANT LOGIC
+  const allProducts =
+    backendLoaded
+      ? (products.length > 0 ? products : [])
+      : [];
+
+  // 👇 Only show local if backend FAILED completely (not just empty)
+  const shouldShowLocal =
+    backendLoaded && products.length === 0;
 
   return (
     <div className="myproduct-grid">
-      {allProducts.length === 0 && (
+
+      {allProducts.length === 0 && !shouldShowLocal && (
         <p style={{ textAlign: "center" }}>
           No products available
         </p>
       )}
 
+      {/* Backend Products */}
       {allProducts.map((item) => {
         let imageSrc = "";
 
         try {
-          // LOCAL
-          if (item.isLocal) {
-            imageSrc = item.image;
-          }
-
-          // POCKETBASE
-          else if (item?.main_image) {
+          if (item?.main_image) {
             imageSrc = pb.files.getURL(item, item.main_image);
-          }
-
-          else if (item?.images?.length > 0) {
+          } else if (item?.images?.length > 0) {
             imageSrc = pb.files.getURL(item, item.images[0]);
           }
-
         } catch (e) {
           console.error("Image error:", e);
-          imageSrc = "";
         }
 
         return (
@@ -110,6 +120,38 @@ const MyProduct = ({ formatPrice }) => {
           </div>
         );
       })}
+
+      {/* Local fallback ONLY if backend totally empty */}
+      {shouldShowLocal &&
+        localProducts.map((item) => (
+          <div key={item.id} className="myproduct-card">
+            <div className="myproduct-img">
+              <img
+                src={item.image}
+                alt={item.name}
+                loading="lazy"
+              />
+            </div>
+
+            <div className="myproduct-content">
+              <h3 className="myproduct-name">{item.name}</h3>
+              <p className="myproduct-price">
+                {formatPrice
+                  ? formatPrice(item.price)
+                  : `₹${item.price}`}
+              </p>
+
+              <button
+                className="myproduct-btn"
+                onClick={() =>
+                  navigate(`/product/${item.id}`)
+                }
+              >
+                View Details
+              </button>
+            </div>
+          </div>
+        ))}
     </div>
   );
 };
