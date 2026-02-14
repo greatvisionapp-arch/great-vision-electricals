@@ -1,5 +1,5 @@
 import "./Contact.css";
-import logo from "../../assets/logo.png"; // replace with your real logo later
+import logo from "../../assets/logo.png";
 
 export default function Contact() {
 
@@ -28,7 +28,6 @@ export default function Contact() {
         />
       </div>
 
-      {/* Heading */}
       <h1>Contact Great Vision</h1>
 
       <p className="contact-subtitle">
@@ -123,6 +122,79 @@ export default function Contact() {
             Call Now
           </a>
 
+        </div>
+
+      </div>
+
+      {/* Trademark Details */}
+      <div className="contact-card" style={{ marginTop: "30px" }}>
+        <h2>Trademark Registration Details</h2>
+
+        {/* Class 9 */}
+        <h3>Class 9 (Registered)</h3>
+
+        <div className="contact-row">
+          <span className="contact-label">Word Mark</span>
+          <span className="contact-value">
+            GREAT VISION WITH THE DEVICE OF GV
+          </span>
+        </div>
+
+        <div className="contact-row">
+          <span className="contact-label">Application No.</span>
+          <span className="contact-value">6317582</span>
+        </div>
+
+        <div className="contact-row">
+          <span className="contact-label">Application Date</span>
+          <span className="contact-value">23/02/2024</span>
+        </div>
+
+        <div className="contact-row">
+          <span className="contact-label">Proprietor</span>
+          <span className="contact-value">Nirbhay Kumar</span>
+        </div>
+
+        <div className="contact-row">
+          <span className="contact-label">Valid Upto</span>
+          <span className="contact-value">23/02/2034</span>
+        </div>
+
+        <hr style={{ margin: "20px 0" }} />
+
+        {/* Class 11 */}
+        <h3>Class 11 (Formalities Chk Pass)</h3>
+
+        <div className="contact-row">
+          <span className="contact-label">Word Mark</span>
+          <span className="contact-value">
+            GREAT VISION along with logo GV (Color Label)
+          </span>
+        </div>
+
+        <div className="contact-row">
+          <span className="contact-label">Application No.</span>
+          <span className="contact-value">6718900</span>
+        </div>
+
+        <div className="contact-row">
+          <span className="contact-label">Application Date</span>
+          <span className="contact-value">21/11/2024</span>
+        </div>
+
+        <div className="contact-row">
+          <span className="contact-label">Used Since</span>
+          <span className="contact-value">01/04/2021</span>
+        </div>
+
+        <div className="contact-row">
+          <span className="contact-label">Status</span>
+          <span className="contact-value">Formalities Check Pass</span>
+        </div>
+
+        <div className="contact-row">
+          <span className="contact-label">Proprietor</span>
+          <span className="contact-value">Nirbhay Kumar</span>
         </div>
 
       </div>

@@ -28,10 +28,25 @@ const Explore = () => {
   const localLeft = [
     {
       id: "l1",
-      imageUrl:
-        "https://images.pexels.com/photos/275033/pexels-photo-275033.jpeg?auto=compress&cs=tinysrgb&w=1600",
-      title: "GAMING GEAR",
-      subtitle: "Game Controller",
+      imageUrl: "/serveroff.png",
+      title: "Server off now ,",
+      subtitle: "PLease wait for server restart",
+      buttonText: "SHOP NOW",
+      productSlug: "game-controller",
+    },
+    {
+      id: "l1",
+      imageUrl: "/serverresatedsoon.png",
+      title: "Server off now ,",
+      subtitle: "PLease wait for server restart",
+      buttonText: "SHOP NOW",
+      productSlug: "game-controller",
+    },
+    {
+      id: "l1",
+      imageUrl: "/server-is-self-manged-now.png",
+      title: "Server off now ,",
+      subtitle: "PLease wait for server restart",
       buttonText: "SHOP NOW",
       productSlug: "game-controller",
     },
@@ -41,10 +56,26 @@ const Explore = () => {
     {
       id: "r1",
       imageUrl:
-        "https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      title: "NEW ARRIVALS",
-      buttonText: "Shop Now",
+        "/serverresatedsoon.png",
+      title: "wait for it,its start soon",
+      buttonText: "",
       productSlug: "bamboo-buds",
+    },
+    {
+      id: "r1",
+      imageUrl: "/server-is-self-manged-now.png",
+      title: "Server off now ,",
+      subtitle: "PLease wait for server restart",
+      buttonText: "SHOP NOW",
+      productSlug: "game-controller",
+    },
+    {
+      id: "r1",
+      imageUrl: "/serveroff.png",
+      title: "Server off now ,",
+      subtitle: "PLease wait for server restart",
+      buttonText: "SHOP NOW",
+      productSlug: "game-controller",
     },
   ];
 
@@ -52,10 +83,26 @@ const Explore = () => {
     {
       id: "b1",
       imageUrl:
-        "https://images.pexels.com/photos/5082566/pexels-photo-5082566.jpeg?auto=compress&cs=tinysrgb&w=1200",
+        "/server-is-self-manged-now.png",
       title: "NEW ARRIVALS",
       buttonText: "Shop Now",
       productSlug: "homepod-pro",
+    },
+    {
+      id: "b1",
+      imageUrl: "/serveroff.png",
+      title: "Server off now ,",
+      subtitle: "PLease wait for server restart",
+      buttonText: "SHOP NOW",
+      productSlug: "game-controller",
+    },
+    {
+      id: "b1",
+      imageUrl:
+        "/serverresatedsoon.png",
+      title: "wait for it,its start soon",
+      buttonText: "",
+      productSlug: "bamboo-buds",
     },
   ];
 

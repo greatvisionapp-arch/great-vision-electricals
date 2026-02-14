@@ -215,3 +215,16 @@
     transform: translateY(0);
   }
 }
+.trademark-section {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.trademark-button {
+  background: #111;
+  color: #fff;
+}
+
+.trademark-button:hover {
+  opacity: 0.9;
+}

@@ -1,7 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset 
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Homepage -->
   <url>
     <loc>https://greatvision.shop/</loc>
     <priority>1.0</priority>
   </url>
+
+  <!-- Gallery Images -->
+  <url>
+    <loc>https://greatvision.shop/gallery</loc>
+    <image:image>
+      <image:loc>https://greatvision.shop/image/img1.jpg</image:loc>
+      <image:title>Great Vision Owner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://greatvision.shop/image/img2.jpg</image:loc>
+      <image:title>Gift Distrubing to electrician</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://greatvision.shop/image/img3.jpg</image:loc>
+      <image:title>Great Vision Shop</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://greatvision.shop/image/great-vision-new-logo.png</image:loc>
+      <image:title>great vision new logo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://greatvision.shop/image/img5.jpg</image:loc>
+      <image:title>Great Vision Owner Image</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://greatvision.shop/image/img6.jpg</image:loc>
+      <image:title>Great Vision Owner ka photo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://greatvision.shop/image/great-vision-new-logo-basic.png</image:loc>
+      <image:title>great vision new logo basic</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://greatvision.shop/image/great-vision-new-logo-metallic.png</image:loc>
+      <image:title>great vision new logo metallic</image:title>
+    </image:image>
+  </url>
+
 </urlset>

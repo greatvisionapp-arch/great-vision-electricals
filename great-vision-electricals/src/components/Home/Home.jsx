@@ -127,9 +127,20 @@ const Home = () => {
           className="home-btn"
           onClick={() => navigate("/explore")}
         >
-          Explore Products
+          Visit Our Shop
+          <span className="arrow">→</span>
         </button>
+<button
+          type="button"
+          className="home-btn"
+          onClick={() => navigate("/Gallery")}
+        >
+          Our Gallery 
+          <span className="arrow">→</span>
+        </button>
+        
       </div>
+      
     </section>
   );
 };
