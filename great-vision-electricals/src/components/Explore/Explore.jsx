@@ -35,7 +35,7 @@ const Explore = () => {
       productSlug: "game-controller",
     },
     {
-      id: "l1",
+      id: "l2",
       imageUrl: "/serverresatedsoon.png",
       title: "Server off now ,",
       subtitle: "PLease wait for server restart",
@@ -43,7 +43,7 @@ const Explore = () => {
       productSlug: "game-controller",
     },
     {
-      id: "l1",
+      id: "l3",
       imageUrl: "/server-is-self-manged-now.png",
       title: "Server off now ,",
       subtitle: "PLease wait for server restart",
@@ -62,7 +62,7 @@ const Explore = () => {
       productSlug: "bamboo-buds",
     },
     {
-      id: "r1",
+      id: "r2",
       imageUrl: "/server-is-self-manged-now.png",
       title: "Server off now ,",
       subtitle: "PLease wait for server restart",
@@ -70,7 +70,7 @@ const Explore = () => {
       productSlug: "game-controller",
     },
     {
-      id: "r1",
+      id: "r3",
       imageUrl: "/serveroff.png",
       title: "Server off now ,",
       subtitle: "PLease wait for server restart",
@@ -89,7 +89,7 @@ const Explore = () => {
       productSlug: "homepod-pro",
     },
     {
-      id: "b1",
+      id: "b2",
       imageUrl: "/serveroff.png",
       title: "Server off now ,",
       subtitle: "PLease wait for server restart",
@@ -97,7 +97,7 @@ const Explore = () => {
       productSlug: "game-controller",
     },
     {
-      id: "b1",
+      id: "b3",
       imageUrl:
         "/serverresatedsoon.png",
       title: "wait for it,its start soon",
