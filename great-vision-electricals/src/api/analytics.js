@@ -1,65 +1,59 @@
 import pb from "../lib/pb";
 
+/* ---------- CLIENT INFO ---------- */
 const getClientInfo = () => {
   if (typeof window === "undefined") return {};
 
   const ua = navigator.userAgent;
 
-  // browser detect (order matters)
-  const browser =
-    ua.includes("Edg") ? "Edge" :
-    ua.includes("Chrome") ? "Chrome" :
-    ua.includes("Firefox") ? "Firefox" :
-    ua.includes("Safari") ? "Safari" :
-    "Other";
-
-  // OS detect
-  const os =
-    ua.includes("Android") ? "Android" :
-    ua.includes("iPhone") || ua.includes("iPad") ? "iOS" :
-    ua.includes("Windows") ? "Windows" :
-    ua.includes("Mac") ? "MacOS" :
-    "Other";
-
-  const device =
-    /Mobi|Android/i.test(ua) ? "Mobile" : "Desktop";
-
   return {
     userAgent: ua,
-    browser,
-    os,
-    device,
+    browser:
+      ua.includes("Edg") ? "Edge" :
+      ua.includes("Chrome") ? "Chrome" :
+      ua.includes("Firefox") ? "Firefox" :
+      ua.includes("Safari") ? "Safari" :
+      "Other",
+    os:
+      ua.includes("Android") ? "Android" :
+      ua.includes("iPhone") || ua.includes("iPad") ? "iOS" :
+      ua.includes("Windows") ? "Windows" :
+      ua.includes("Mac") ? "MacOS" :
+      "Other",
+    device: /Mobi|Android/i.test(ua) ? "Mobile" : "Desktop",
   };
 };
 
+/* ---------- TRACK FUNCTION ---------- */
 export const trackPageView = async ({
+  userId,
   page,
   visits = 1,
-  timeSpent = 0,
-  lastActivity,
+  timeSpentMinutes = 0,
 }) => {
-  if (!page) return;
+  if (!userId || !page) {
+    console.warn("⚠ Missing userId or page", { userId, page });
+    return;
+  }
 
-  // Ensure `visits` and `timeSpent` are numbers and fall back to default values
-  visits = typeof visits === "number" ? visits : 1;
-  timeSpent = typeof timeSpent === "number" ? timeSpent : 0;
+  const data = {
+    userId: String(userId),
+    page: String(page),
+    visits: Number(visits) || 1,
+    timeSpentMinutes: Number(timeSpentMinutes) || 0,
+    lastActivity: new Date().toISOString(),
+    ...getClientInfo(),
+  };
+
+  console.log("📤 Sending analytics:", data);
 
   try {
-    const data = {
-      page,
-      visits,
-      timeSpent,
-      lastActivity: lastActivity
-        ? new Date(lastActivity).toISOString()
-        : new Date().toISOString(),
-      ...getClientInfo(),
-    };
-
-    // Logging to check data before sending
-    console.log("Analytics data being sent:", data);
-
-    await pb.collection("analytics").create(data);
-  } catch (e) {
-    console.error("❌ Analytics create failed:", e?.response?.data || e);
+    const record = await pb.collection("analytics").create(data);
+    console.log("✅ Analytics saved:", record);
+  } catch (err) {
+    console.error("❌ FULL ERROR:", err);
+    if (err?.response) {
+      console.error("❌ Response Data:", err.response);
+    }
   }
 };

@@ -46,12 +46,12 @@ const ViewDetails = () => {
 
   /* ================= LOAD PRODUCT ================= */
 
-  useEffect(() => {
+useEffect(() => {
   const loadProduct = async () => {
     setLoading(true);
+    setExpand(false);
 
     let foundProduct = null;
-    let pbProducts = [];
 
     // 1️⃣ Check local first
     foundProduct = localProducts.find(
@@ -69,65 +69,74 @@ const ViewDetails = () => {
       }
     }
 
+    // ❌ product yahan null ho sakta hai
+    if (!foundProduct) {
+      console.log("Product not found");
+      setProduct(null);
+      setLoading(false);
+      return;
+    }
+
+    // ✅ ONLY foundProduct use karo
+    console.log("PRODUCT ID:", id);
+    console.log("IS LOCAL?", foundProduct?.isLocal);
+    console.log("RAW DESCRIPTION:", foundProduct?.description);
+    console.log(
+      "Text length:",
+      foundProduct?.description
+        ?.replace(/<[^>]+>/g, "")
+        .length
+    );
+
+    // ✅ yahin state set karo
     setProduct(foundProduct);
 
-    // 3️⃣ Recommended logic (Local + PB)
-    // 🔥 Recommended (Brand-based, but safe)
-try {
-  const pbList = await pb.collection("products").getList(1, 50, {
-    sort: "-created"
-  });
+    // 🔥 Recommended logic
+    try {
+      const pbList = await pb.collection("products").getList(1, 50, {
+        sort: "-created",
+      });
 
-  const combined = [
-    ...localProducts,
-    ...pbList.items
-  ];
+      const combined = [...localProducts, ...pbList.items];
 
-  const normalizedBrand = foundProduct?.brand
-    ?.toLowerCase()
-    ?.trim();
-
-  let filtered = [];
-
-  if (normalizedBrand) {
-    filtered = combined.filter((item) => {
-      const itemBrand = item.brand
+      const normalizedBrand = foundProduct?.brand
         ?.toLowerCase()
         ?.trim();
 
-      return (
-        itemBrand === normalizedBrand &&
-        String(item.id) !== String(foundProduct.id)
+      let filtered = [];
+
+      if (normalizedBrand) {
+        filtered = combined.filter((item) => {
+          const itemBrand = item.brand
+            ?.toLowerCase()
+            ?.trim();
+
+          return (
+            itemBrand === normalizedBrand &&
+            String(item.id) !== String(foundProduct.id)
+          );
+        });
+      }
+
+      if (filtered.length === 0) {
+        filtered = combined.filter(
+          (item) => String(item.id) !== String(foundProduct.id)
+        );
+      }
+
+      setRecommended(filtered.slice(0, 4));
+    } catch {
+      const fallback = localProducts.filter(
+        (item) => String(item.id) !== String(foundProduct.id)
       );
-    });
-  }
 
-  // 🔁 Fallback: agar same brand na mile to random show karo
-  if (filtered.length === 0) {
-    filtered = combined.filter(
-      (item) =>
-        String(item.id) !== String(foundProduct.id)
-    );
-  }
-
-  setRecommended(filtered.slice(0, 4));
-
-} catch {
-  const fallback = localProducts.filter(
-    (item) =>
-      String(item.id) !== String(foundProduct?.id)
-  );
-
-  setRecommended(fallback.slice(0, 4));
-}
-
+      setRecommended(fallback.slice(0, 4));
+    }
 
     setLoading(false);
   };
 
-  if (id) {
-    loadProduct();
-  }
+  if (id) loadProduct();
 }, [id]);
 
 
@@ -271,28 +280,40 @@ const currentImage =
 </div>
 
 
-          <div className="short-desc-box">
+         <div className="short-desc-box">
 
-  <div
-    dangerouslySetInnerHTML={{
-      __html: expand
-        ? product.description || ""
-        : (product.description || "").substring(0, 300)
-    }}
-  />
-
-  {(product.description || "").length > 300 && (
-    <button
-      className="expand-btn"
-      onClick={() => setExpand(!expand)}
-    >
-      {expand ? "Show Less ▲" : "Read More ▼"}
-    </button>
+  {product.short_description && (
+    <div className="short-text">
+      {product.short_description}
+    </div>
   )}
 
+  {product.description && (
+    <>
+      {expand && (
+        <div
+          dangerouslySetInnerHTML={{
+            __html: product.description
+          }}
+        />
+      )}
+
+      <button
+        className="expand-btn"
+        onClick={() => setExpand(!expand)}
+      >
+        {expand ? "Show Less ▲" : "Read More ▼"}
+      </button>
+    </>
+  )}
+
+</div>
 
 
-          </div>
+
+
+
+
         </div>
       </div>
 

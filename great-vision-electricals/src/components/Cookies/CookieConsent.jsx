@@ -1,114 +1,95 @@
 import { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { trackPageView } from "../../api/analytics";
 import "./cookie.css";
 
-const COOKIE_ACTIVITY = "user_activity";
 const CONSENT_NAME = "cookie_consent";
+const USER_ID = "site_user_id";
+console.log(window.location.pathname);
+console.log(window.location.hash);
 
-/* ---------- helpers ---------- */
-const setCookie = (name, value, days = 30) => {
+const setCookie = (name, value, days = 365) => {
   const d = new Date();
   d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
-  document.cookie = `${name}=${encodeURIComponent(
-    JSON.stringify(value)
-  )};expires=${d.toUTCString()};path=/;SameSite=Lax`;
+  document.cookie = `${name}=${value};expires=${d.toUTCString()};path=/;SameSite=Lax`;
 };
 
 const getCookie = (name) => {
   const match = document.cookie.match(
     new RegExp("(^| )" + name + "=([^;]+)")
   );
-  if (!match) return null;
-  try {
-    return JSON.parse(decodeURIComponent(match[2]));
-  } catch {
-    return null;
-  }
+  return match ? match[2] : null;
 };
 
 const deleteCookie = (name) => {
   document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;`;
 };
 
-/* ---------- component ---------- */
+const generateUserId = () => "user-" + crypto.randomUUID();
+
+/* ✅ Universal Page Getter */
+const getCurrentPage = () => {
+  const hashPath = window.location.hash.replace("#", "");
+  if (hashPath && hashPath !== "/") return hashPath;
+  return window.location.pathname || "/";
+};
+
 export default function CookieConsent() {
-  const [consent, setConsent] = useState(() => getCookie(CONSENT_NAME));
+  const location = useLocation();
+  const [consent, setConsent] = useState(() => getCookie(CONSENT_NAME) === "true");
   const [show, setShow] = useState(false);
+
   const startTimeRef = useRef(null);
+  const pageRef = useRef(null);
+  const userIdRef = useRef(null);
 
-  /* show banner */
   useEffect(() => {
-    setShow(consent !== true);
+    setShow(!consent);
   }, [consent]);
 
-  /* analytics tracking */
   useEffect(() => {
-    if (consent !== true) return;
+  if (!consent) return;
 
-    const page = window.location.pathname;
-    const stored = getCookie(COOKIE_ACTIVITY) || {};
+  let userId = getCookie(USER_ID);
+  if (!userId) {
+    userId = generateUserId();
+    setCookie(USER_ID, userId);
+  }
 
-    if (!stored[page]) {
-      stored[page] = { visits: 0, timeSpent: 0 };
-    }
+  userIdRef.current = userId;
 
-    stored[page].visits += 1;
-    stored.lastActivity = new Date().toISOString();
-    setCookie(COOKIE_ACTIVITY, stored);
+  const currentPage = getCurrentPage();
+  pageRef.current = currentPage;
+  startTimeRef.current = Date.now();
 
-    startTimeRef.current = Date.now();
+  return () => {
+    if (!startTimeRef.current || !pageRef.current) return;
 
-    const updateActivity = () => {
-      stored.lastActivity = new Date().toISOString();
-      setCookie(COOKIE_ACTIVITY, stored);
-    };
+    const seconds = Math.floor(
+      (Date.now() - startTimeRef.current) / 1000
+    );
 
-    const events = ["click", "scroll", "keydown", "mousemove"];
-    events.forEach((e) => window.addEventListener(e, updateActivity));
+    const minutes = Number((seconds / 60).toFixed(2));
 
-    const flush = () => {
-      if (!startTimeRef.current) return;
+    trackPageView({
+      userId: userIdRef.current,
+      page: pageRef.current,   // ✅ correct page
+      visits: 1,
+      timeSpentMinutes: minutes,
+    });
+  };
 
-      const duration = Math.max(
-        0,
-        Math.floor((Date.now() - startTimeRef.current) / 1000)
-      );
+}, [location.pathname, consent]);
+ // 🔥 dependency improved
 
-      stored[page].timeSpent += duration;
-      stored.lastActivity = new Date().toISOString();
-      setCookie(COOKIE_ACTIVITY, stored);
-
-      // Now pass data correctly to trackPageView
-      trackPageView({
-        page: page,
-        visits: stored[page].visits,
-        timeSpent: stored[page].timeSpent,
-        lastActivity: stored.lastActivity,
-      });
-
-      startTimeRef.current = null;
-    };
-
-    window.addEventListener("beforeunload", flush);
-
-    return () => {
-      flush();
-      events.forEach((e) =>
-        window.removeEventListener(e, updateActivity)
-      );
-      window.removeEventListener("beforeunload", flush);
-    };
-  }, [consent]);
-
-  /* actions */
   const acceptCookies = () => {
-    setCookie(CONSENT_NAME, true);
+    setCookie(CONSENT_NAME, "true");
     setConsent(true);
   };
 
   const declineCookies = () => {
     deleteCookie(CONSENT_NAME);
-    deleteCookie(COOKIE_ACTIVITY);
+    deleteCookie(USER_ID);
     setConsent(false);
   };
 

@@ -23,35 +23,26 @@ const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [pbImages, setPbImages] = useState([]);
 
-  /* ================= FETCH FROM POCKETBASE ================= */
-
   useEffect(() => {
     const fetchImages = async () => {
       try {
         const data = await getGalleryImages();
-
         const formatted = data.map((item) => ({
           id: item.id,
           src: item.image,
           title: item.title,
         }));
-
         setPbImages(formatted);
       } catch (err) {
         console.error("Gallery Fetch Error:", err);
       }
     };
-
     fetchImages();
   }, []);
-
-  /* ================= IMAGE MERGE ================= */
 
   const allImages = useMemo(() => {
     return [...staticImages, ...pbImages];
   }, [pbImages]);
-
-  /* ================= LIGHTBOX ================= */
 
   const openImage = useCallback((item) => {
     document.body.style.overflow = "hidden";
@@ -65,39 +56,73 @@ const Gallery = () => {
 
   return (
     <>
-      {/* ✅ Proper SEO Fix */}
       <Helmet>
-        <title>Gallery | Great Vision Electricals</title>
+        <title>Gallery | Great Vision Electricals Paliganj</title>
+
         <meta
           name="description"
-          content="Explore Great Vision Electricals gallery featuring events, shop images, electricians, and official brand logos."
+          content="Explore Great Vision Electricals Paliganj gallery featuring shop photos, electrician events, product displays, warehouse images and official brand logos."
         />
-        <link
-          rel="canonical"
-          href="https://greatvision.shop/gallery"
+
+        <link rel="canonical" href="https://greatvision.shop/gallery" />
+
+        {/* Open Graph */}
+        <meta property="og:title" content="Gallery | Great Vision Electricals" />
+        <meta
+          property="og:description"
+          content="Official gallery of Great Vision Electricals Paliganj."
         />
+        <meta property="og:url" content="https://greatvision.shop/gallery" />
+        <meta property="og:type" content="website" />
+
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ImageGallery",
+            "name": "Great Vision Electricals Gallery",
+            "url": "https://greatvision.shop/gallery",
+          })}
+        </script>
       </Helmet>
 
-      <section className="gallery-section">
-        <h1 className="gallery-title">Our Gallery</h1>
+      <main className="gallery-section">
+        <header>
+          <h1 className="gallery-title">Great Vision Electricals Gallery</h1>
+        </header>
 
-        <div className="gallery-grid">
+        {/* ✅ Important Static SEO Content */}
+        <section className="gallery-description">
+          <p>
+            Great Vision Electricals Paliganj is a trusted electrical brand
+            providing quality products including LED panels, ceiling fans,
+            MCBs, switches, wiring solutions and more. This gallery showcases
+            our official store, warehouse (godown), electrician events,
+            product displays and brand identity images.
+          </p>
+        </section>
+
+        <section className="gallery-grid">
           {allImages.map((item) => (
-            <div
+            <figure
               key={item.id}
               className="gallery-card"
               onClick={() => openImage(item)}
             >
               <img
                 src={item.src}
-                alt={item.title}
+                alt={`${item.title} - Great Vision Electricals Paliganj`}
                 loading="lazy"
                 decoding="async"
+                width="400"
+                height="300"
               />
-              <div className="gallery-overlay">{item.title}</div>
-            </div>
+              <figcaption className="gallery-overlay">
+                {item.title}
+              </figcaption>
+            </figure>
           ))}
-        </div>
+        </section>
 
         {selectedImage && (
           <div className="lightbox" onClick={closeImage}>
@@ -109,7 +134,7 @@ const Gallery = () => {
             />
           </div>
         )}
-      </section>
+      </main>
     </>
   );
 };

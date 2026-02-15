@@ -131,13 +131,14 @@ const Home = () => {
           <span className="arrow">→</span>
         </button>
 <button
-          type="button"
-          className="home-btn"
-          onClick={() => navigate("/Gallery")}
-        >
-          Our Gallery 
-          <span className="arrow">→</span>
-        </button>
+  type="button"
+  className="home-btn"
+  onClick={() => navigate("/gallery")}
+>
+  Our Gallery
+  <span className="arrow">→</span>
+</button>
+
         
       </div>
       

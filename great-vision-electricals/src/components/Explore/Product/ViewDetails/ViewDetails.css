@@ -158,6 +158,10 @@ html.dark .main-image {
   font-size: 15px;
   color: var(--subtext);
   line-height: 1.6;
+
+  /* 🔥 ADD THESE */
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .expand-btn {

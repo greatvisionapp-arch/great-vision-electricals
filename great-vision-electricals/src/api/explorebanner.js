@@ -8,20 +8,21 @@ export const getExploreBanners = async () => {
     });
 
     const formatted = records.map((item) => ({
-      id: item.id,
-      position: item.position || "",
-      title: item.title || "",
-      subtitle: item.subtitle || "",
-      bottomText: item.bottom_text || "",
-      buttonText:
-        item.button_text && item.button_text.trim() !== ""
-          ? item.button_text
-          : "Shop Now",   // 👈 default fallback
-      productSlug: item.product_slug || "",
-      imageUrl: item.image
-        ? pb.files.getUrl(item, item.image)
-        : "",
-    }));
+  id: item.id,
+  position: item.position || "",
+  title: item.title || "",
+  subtitle: item.subtitle || "",
+  bottomText: item.bottom_text || "",
+  buttonText:
+    item.button_text && item.button_text.trim() !== ""
+      ? item.button_text
+      : "Shop Now",
+  productSlug: item.product_slug || "",
+  imageUrl: item.image
+    ? pb.files.getURL(item, item.image)   // ✅ FIXED
+    : "",
+}));
+
 
     return {
       left: formatted.filter(b => b.position === "left"),
