@@ -18,7 +18,6 @@ const MyProduct = ({ formatPrice }) => {
   const localProducts = [
     { id: "local-1", name: "LED Panel Light", price: 799, image: ledPanel },
     { id: "local-2", name: "Smart Switch Board", price: 1499, image: smartSwitch },
-    { id: "local-3", name: "great vision new logo", price: 0, image: newlogoofgreatvision},
   ];
 
   const [products, setProducts] = useState([]);
