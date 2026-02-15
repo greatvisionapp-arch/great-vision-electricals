@@ -253,6 +253,7 @@ const Explore = () => {
             </div>
           </div>
         </div>
+        
 
         <div className="full-divider"></div>
       </section>

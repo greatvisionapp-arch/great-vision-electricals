@@ -144,13 +144,26 @@ useEffect(() => {
 
   /* ================= LOADING CHECK ================= */
 
-  if (loading) {
-    return <div className="loading">Loading...</div>;
-  }
+  /* ================= LOADING CHECK ================= */
 
-  if (!product) {
-    return <div className="loading">Product not found</div>;
-  }
+if (loading) {
+  return (
+    <div className="loading-wrapper">
+      <div className="loading-bar"></div>
+    </div>
+  );
+}
+
+if (!product) {
+  return (
+    <div className="loading-wrapper">
+      <div className="loading-bar"></div>
+      <p className="loading-text">
+        May be server error or product not found
+      </p>
+    </div>
+  );
+}
 
 
 

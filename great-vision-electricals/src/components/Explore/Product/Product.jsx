@@ -1,11 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Product.css";
 
 import MyProduct from "./MyProduct/MyProduct";
 import OtherBrandProduct from "./OtherBrandProduct/OtherBrandProduct";
 
 const Product = () => {
-  const [isOtherBrand, setIsOtherBrand] = useState(false);
+
+  const [isOtherBrand, setIsOtherBrand] = useState(() => {
+    const saved = localStorage.getItem("productView");
+    return saved === "other"; // default false if null
+  });
+
+  useEffect(() => {
+    localStorage.setItem(
+      "productView",
+      isOtherBrand ? "other" : "my"
+    );
+  }, [isOtherBrand]);
 
   const handleToggle = (e) => {
     setIsOtherBrand(e.target.checked);
@@ -19,7 +30,6 @@ const Product = () => {
     <section className="product-section">
       <div className="product-container">
 
-        {/* Toggle */}
         <div className="switch-holder">
           <div className="switch-label">
             <span>
@@ -38,7 +48,6 @@ const Product = () => {
           </div>
         </div>
 
-        {/* Products */}
         <div className="product-view">
           {isOtherBrand ? (
             <OtherBrandProduct formatPrice={formatPrice} />

@@ -207,12 +207,51 @@ html.dark .main-image {
 
 /* ================= LOADING ================= */
 
-.loading {
-  padding: 100px;
-  text-align: center;
-  font-size: 20px;
-  color: var(--text);
+.loading-wrapper {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
+
+/* Outer track */
+.loading-bar {
+  width: 250px;
+  height: 6px;
+  background: #e5e5e5;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Moving inner bar */
+.loading-bar::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 40%;
+  background: #ff6600;
+  border-radius: 4px;
+  animation: slide 1.2s infinite ease-in-out;
+}
+
+@keyframes slide {
+  0% {
+    left: -40%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.loading-text {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #666;
+}
+
 /* ================= SPEC SECTION ================= */
 
 .spec-section {

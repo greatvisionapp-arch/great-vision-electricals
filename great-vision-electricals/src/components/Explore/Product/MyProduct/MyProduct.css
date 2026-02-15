@@ -1,3 +1,5 @@
+/* ================= THEME ================= */
+
 :root[data-theme="light"] {
   --card-bg: #ffffff;
   --card-shadow: rgba(0, 0, 0, 0.08);
@@ -17,16 +19,18 @@
   --border: #ffffff9c;
 }
 
-/* ================= GRID ================= */
+/* ================= GRID (DESKTOP) ================= */
 
 .myproduct-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 28px;
-  margin-top: 30px;
+  gap: 16px;              /* 28px → 16px */
+  margin-top: 20px;       /* 30px → 20px */
+  position: relative;
+  min-height: 300px;
 }
 
-/* ================= CARD ================= */
+/* ================= CARD (DESKTOP) ================= */
 
 .myproduct-card {
   background: var(--card-bg);
@@ -43,55 +47,55 @@
   box-shadow: 0 18px 45px var(--card-shadow);
 }
 
-/* ================= IMAGE ================= */
+/* ================= IMAGE (DESKTOP) ================= */
 
 .myproduct-img {
   width: 100%;
-  height: 220px;   /* fixed box height */
+  height: 220px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: #f5f5f5; /* optional */
+  background: #f5f5f5;
 }
 
 .myproduct-img img {
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain;  /* 🔥 important */
+  object-fit: contain;
   transition: transform 0.5s ease;
 }
-
 
 .myproduct-card:hover .myproduct-img img {
   transform: scale(1.08);
 }
 
-/* ================= CONTENT ================= */
+/* ================= CONTENT (DESKTOP) ================= */
 
 .myproduct-content {
-  padding: 20px;
+  padding: 14px; 
 }
 
 .myproduct-name {
   font-size: 18px;
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   color: var(--product-text);
+  
 }
 
 .myproduct-price {
-  font-size: 16px;
+  font-size: 10px;
   font-weight: 600;
   color: var(--accent);
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 }
 
 /* ================= BUTTON ================= */
 
 .myproduct-btn {
   width: 100%;
-  padding: 10px;
+  padding: 8px;
   background: var(--accent);
   border: none;
   border-radius: 10px;
@@ -99,6 +103,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: 0.3s ease;
+  margin-top: 12px;  
 }
 
 .myproduct-btn:hover {
@@ -106,7 +111,29 @@
   color: #fff;
 }
 
-/* ================= RESPONSIVE ================= */
+.myproduct-stock {
+  font-size: 10px;
+  margin: 0;
+  color: #16a34a;
+}
+
+.myproduct-stock.out {
+  color: #dc2626;
+}
+
+.deal-badge-inline {
+  margin-top: 8px;      /* 4px → 8px (more space above) */
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  background: #dc2626;
+  color: #fff;
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.3px;
+}
+
+/* ================= RESPONSIVE GRID ================= */
 
 @media (max-width: 1024px) {
   .myproduct-grid {
@@ -123,61 +150,144 @@
     height: 180px;
   }
 }
-/* ================= ANDROID SWIPE ================= */
+
+
+
+
+
+/* ================= MOBILE CARD LAYOUT (ANDROID STYLE) ================= */
 
 @media (max-width: 768px) {
 
   .myproduct-grid {
-    display: flex;
-    flex-direction: column;
+    display: grid;              /* 🔥 KEEP GRID */
+    grid-template-columns: 1fr; /* single column */
     gap: 12px;
   }
 
   .myproduct-card {
     display: flex;
-    gap: 12px;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #727272;
-    background: #a9a9a91b;
+    align-items: flex-start;
+    padding: 12px;
+    border-radius: 16px;
+    background: var(--card-bg);
+    border: 2px solid var(--border);
+    width: 100%;
+    min-height: 110px;          /* 🔥 prevents height jump */
   }
 
-  /* Image Left */
+  /* IMAGE */
   .myproduct-img {
-    width: 110px;
-    height: 110px;
+  width: 95px;
+  aspect-ratio: 1 / 1;   /* 🔥 locks ratio */
+  height: auto;          /* remove fixed height */
+  flex-shrink: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f3f4f6;
+  position: relative;
+}
+
+
+  .myproduct-img img {
+    width: 100%;
+    height: 100%;
     object-fit: contain;
-    flex-shrink: 0;
-    border: 1px solid #727272 ;
   }
 
-  /* Right Content */
+  /* CONTENT */
   .myproduct-content {
+    flex: 1;
+    margin-left: 14px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  /* TEXT */
+  .myproduct-text {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    
+    gap: 3px;
+    margin-top: 0;              /* 🔥 remove negative margin */
   }
 
-  .myproduct-title {
-    font-size: 14px;
-    font-weight: 500;
-    margin-bottom: 4px;
-    
+  .myproduct-name {
+    font-size: 12px;
+    font-weight: 400;
+    margin: 0;
   }
 
   .myproduct-price {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--price-color);
-
-
+    font-size: 12px;
+    margin: 0;
+    color: var(--accent);
   }
 
-  .myproduct-rating {
-    font-size: 12px;
-    color: #388e3c;
-    margin-top: 4px;
+  .myproduct-stock {
+    font-size: 10px;
+    margin: 0;
+    color: #16a34a;
+  }
+
+  .myproduct-stock.out {
+    color: #dc2626;
+  }
+
+  /* BUTTON */
+  .myproduct-btn {
+    width: auto;
+    padding: 6px 12px;
+    border-radius: 8px;
+    margin-left: 10px;
+    font-size: 10px;
   }
 }
 
+
+
+/* ================= LOADER ================= */
+
+.loader-container {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(0, 0, 0, 0.1);
+  border-top: 5px solid #111;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@media (max-width: 600px) {
+  .myproduct-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* Required for overlay positioning */
+.myproduct-img {
+  position: relative;
+}
+
+.deal-badge-inline {
+  margin-top: 4px;
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  background: #dc2626;
+  color: #fff;
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.3px;
+}

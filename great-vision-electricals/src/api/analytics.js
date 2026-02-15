@@ -31,29 +31,41 @@ export const trackPageView = async ({
   visits = 1,
   timeSpentMinutes = 0,
 }) => {
-  if (!userId || !page) {
-    console.warn("⚠ Missing userId or page", { userId, page });
-    return;
-  }
-
-  const data = {
-    userId: String(userId),
-    page: String(page),
-    visits: Number(visits) || 1,
-    timeSpentMinutes: Number(timeSpentMinutes) || 0,
-    lastActivity: new Date().toISOString(),
-    ...getClientInfo(),
-  };
-
-  console.log("📤 Sending analytics:", data);
+  if (!userId || !page) return;
 
   try {
-    const record = await pb.collection("analytics").create(data);
-    console.log("✅ Analytics saved:", record);
-  } catch (err) {
-    console.error("❌ FULL ERROR:", err);
-    if (err?.response) {
-      console.error("❌ Response Data:", err.response);
+    // 🔥 Check existing record
+    const existing = await pb
+      .collection("analytics")
+      .getFirstListItem(
+        `userId="${userId}" && page="${page}"`,
+        { requestKey: null }
+      )
+      .catch(() => null);
+
+    if (existing) {
+      // 🔥 Update existing record
+      await pb.collection("analytics").update(existing.id, {
+        visits: (existing.visits || 0) + Number(visits),
+        timeSpentMinutes:
+          (existing.timeSpentMinutes || 0) + Number(timeSpentMinutes),
+        lastActivity: new Date().toISOString(),
+        ...getClientInfo(),
+      });
+
+    } else {
+      // 🔥 Create new record
+      await pb.collection("analytics").create({
+        userId: String(userId),
+        page: String(page),
+        visits: Number(visits),
+        timeSpentMinutes: Number(timeSpentMinutes),
+        lastActivity: new Date().toISOString(),
+        ...getClientInfo(),
+      });
     }
+
+  } catch (err) {
+    console.error("❌ Analytics Error:", err);
   }
 };

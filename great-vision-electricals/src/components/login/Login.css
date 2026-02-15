@@ -305,3 +305,97 @@
 .logout-btn:hover {
   background: #d63031;
 }
+/* ===== Terms Box ===== */
+.terms-box {
+  margin: 15px 0 18px 0;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+}
+
+.terms-box label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: #444;
+  user-select: none;
+}
+
+/* Hide default checkbox */
+.terms-box input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #999;
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Checked state */
+.terms-box input[type="checkbox"]:checked {
+  background-color: #000;
+  border-color: #000;
+}
+
+/* Tick mark */
+.terms-box input[type="checkbox"]:checked::after {
+  content: "✔";
+  color: #fff;
+  font-size: 12px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+}
+
+/* Hover effect */
+.terms-box input[type="checkbox"]:hover {
+  border-color: #000;
+}
+
+/* Terms text link style */
+.terms-link {
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ===== Disabled Google Button ===== */
+.google-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+/* Clickable Terms & Privacy Text */
+.terms-link {
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  color: #000;
+  transition: color 0.25s ease;
+}
+
+/* Hover color change */
+.terms-link:hover {
+  color: #c59d00; /* gold tone (Great Vision feel) */
+}
+
+/* Animated underline */
+.terms-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background-color: #c59d00;
+  transition: width 0.25s ease;
+}
+
+.terms-link:hover::after {
+  width: 100%;
+}

@@ -5,8 +5,6 @@ import "./cookie.css";
 
 const CONSENT_NAME = "cookie_consent";
 const USER_ID = "site_user_id";
-console.log(window.location.pathname);
-console.log(window.location.hash);
 
 const setCookie = (name, value, days = 365) => {
   const d = new Date();
@@ -27,7 +25,6 @@ const deleteCookie = (name) => {
 
 const generateUserId = () => "user-" + crypto.randomUUID();
 
-/* ✅ Universal Page Getter */
 const getCurrentPage = () => {
   const hashPath = window.location.hash.replace("#", "");
   if (hashPath && hashPath !== "/") return hashPath;
@@ -36,7 +33,9 @@ const getCurrentPage = () => {
 
 export default function CookieConsent() {
   const location = useLocation();
-  const [consent, setConsent] = useState(() => getCookie(CONSENT_NAME) === "true");
+  const [consent, setConsent] = useState(
+    () => getCookie(CONSENT_NAME) === "true"
+  );
   const [show, setShow] = useState(false);
 
   const startTimeRef = useRef(null);
@@ -47,7 +46,7 @@ export default function CookieConsent() {
     setShow(!consent);
   }, [consent]);
 
-  useEffect(() => {
+ useEffect(() => {
   if (!consent) return;
 
   let userId = getCookie(USER_ID);
@@ -58,7 +57,19 @@ export default function CookieConsent() {
 
   userIdRef.current = userId;
 
-  const currentPage = getCurrentPage();
+  const currentPage =
+    location.pathname +
+    location.search +
+    location.hash;
+
+  // 🔥 Send visit immediately
+  trackPageView({
+    userId,
+    page: currentPage,
+    visits: 1,
+    timeSpentMinutes: 0,
+  });
+
   pageRef.current = currentPage;
   startTimeRef.current = Date.now();
 
@@ -73,14 +84,20 @@ export default function CookieConsent() {
 
     trackPageView({
       userId: userIdRef.current,
-      page: pageRef.current,   // ✅ correct page
-      visits: 1,
+      page: pageRef.current,
+      visits: 0,
       timeSpentMinutes: minutes,
     });
   };
 
-}, [location.pathname, consent]);
- // 🔥 dependency improved
+}, [
+  location.key,        // 🔥 important
+  location.pathname,
+  location.search,
+  location.hash,
+  consent
+]);
+
 
   const acceptCookies = () => {
     setCookie(CONSENT_NAME, "true");

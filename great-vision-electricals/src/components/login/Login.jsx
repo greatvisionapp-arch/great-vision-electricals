@@ -5,6 +5,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import { signInWithGoogle, auth } from "../../lib/firebase";
 import { trackLogin } from "../../api/trackLogin";
 import { onAuthStateChanged, signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const waitForAuth = () =>
   new Promise((resolve) => {
@@ -16,10 +17,13 @@ const waitForAuth = () =>
   });
 
 const Login = ({ closeModal }) => {
+  const navigate = useNavigate();
+
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
+  const [agreeTerms, setAgreeTerms] = useState(false);
+  const [agreePrivacy, setAgreePrivacy] = useState(false);
 
-  // 🔥 Listen to auth state (so Login modal knows if user is logged in)
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (u) => {
       setUser(u);
@@ -28,7 +32,7 @@ const Login = ({ closeModal }) => {
   }, []);
 
   const handleGoogleLogin = async () => {
-    if (loading) return;
+    if (loading || !agreeTerms || !agreePrivacy) return;
 
     try {
       setLoading(true);
@@ -48,8 +52,6 @@ const Login = ({ closeModal }) => {
         photo: user.photoURL || null,
       };
 
-      console.log("Firebase user:", userData);
-
       await trackLogin(userData);
 
       if (closeModal) closeModal();
@@ -63,34 +65,36 @@ const Login = ({ closeModal }) => {
   const handleLogout = async () => {
     try {
       await signOut(auth);
+      setAgreeTerms(false);
+      setAgreePrivacy(false);
     } catch (err) {
       console.error("Logout failed:", err);
     }
   };
 
+  const handleNavigate = (path, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (closeModal) closeModal(); // ✅ modal close
+    navigate(path);               // ✅ navigate
+  };
+
+  const isDisabled = loading || !agreeTerms || !agreePrivacy;
+
   return (
     <div className="login-backdrop">
       <div className="login-container">
 
-        {/* ===== HEADER ===== */}
         <div className="login-header">
           <span className="login-title">Login</span>
-
           <div className="header-actions">
-            <span className="theme-icon" aria-label="Toggle theme">☀️</span>
-            <button
-              className="close-btn"
-              onClick={closeModal}
-              aria-label="Close login modal"
-            >
-              ×
-            </button>
+            <span className="theme-icon">☀️</span>
+            <button className="close-btn" onClick={closeModal}>×</button>
           </div>
         </div>
 
         <div className="divider" />
 
-        {/* ===== BODY ===== */}
         <div className="login-body">
 
           <div className="text-group">
@@ -99,20 +103,57 @@ const Login = ({ closeModal }) => {
               <span className="highlight-text great">GREAT</span>{" "}
               <span className="highlight-text vision">VISION</span>
             </h3>
-
             <h4 className="second-text">Electricals</h4>
           </div>
 
           {!user ? (
-            <button
-              className="google-btn"
-              type="button"
-              onClick={handleGoogleLogin}
-              disabled={loading}
-            >
-              <i className="fab fa-google" aria-hidden="true"></i>
-              {loading ? "Signing in..." : "Continue with Google"}
-            </button>
+            <>
+              {/* Terms */}
+              <div className="terms-box">
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={agreeTerms}
+                    onChange={(e) => setAgreeTerms(e.target.checked)}
+                  />
+                  I agree to the{" "}
+                  <span
+                    className="terms-link"
+                    onClick={(e) => handleNavigate("/terms", e)}
+                  >
+                    Terms & Conditions
+                  </span>
+                </label>
+              </div>
+
+              {/* Privacy */}
+              <div className="terms-box">
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={agreePrivacy}
+                    onChange={(e) => setAgreePrivacy(e.target.checked)}
+                  />
+                  I agree to the{" "}
+                  <span
+                    className="terms-link"
+                    onClick={(e) => handleNavigate("/privacy", e)}
+                  >
+                    Privacy Policy
+                  </span>
+                </label>
+              </div>
+
+              <button
+                className="google-btn"
+                type="button"
+                onClick={handleGoogleLogin}
+                disabled={isDisabled}
+              >
+                <i className="fab fa-google"></i>
+                {loading ? "Signing in..." : "Continue with Google"}
+              </button>
+            </>
           ) : (
             <div className="logged-in-box">
               <img
@@ -122,7 +163,6 @@ const Login = ({ closeModal }) => {
                 referrerPolicy="no-referrer"
               />
               <p className="login-email">{user.email}</p>
-
               <button className="logout-btn" onClick={handleLogout}>
                 Logout
               </button>
