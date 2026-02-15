@@ -54,6 +54,14 @@ const Gallery = () => {
     setSelectedImage(null);
   }, []);
 
+  useEffect(() => {
+    const escClose = (e) => {
+      if (e.key === "Escape") closeImage();
+    };
+    window.addEventListener("keydown", escClose);
+    return () => window.removeEventListener("keydown", escClose);
+  }, [closeImage]);
+
   return (
     <>
       <Helmet>
@@ -61,44 +69,62 @@ const Gallery = () => {
 
         <meta
           name="description"
-          content="Explore Great Vision Electricals Paliganj gallery featuring shop photos, electrician events, product displays, warehouse images and official brand logos."
+          content="Official gallery of Great Vision Electricals Paliganj featuring shop photos, warehouse infrastructure, electrician events, product displays and brand visuals."
         />
 
         <link rel="canonical" href="https://greatvision.shop/gallery" />
 
-        {/* Open Graph */}
         <meta property="og:title" content="Gallery | Great Vision Electricals" />
         <meta
           property="og:description"
-          content="Official gallery of Great Vision Electricals Paliganj."
+          content="Explore store photos, warehouse images, electrician events and official brand visuals."
         />
         <meta property="og:url" content="https://greatvision.shop/gallery" />
         <meta property="og:type" content="website" />
 
-        {/* Structured Data */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "ImageGallery",
-            "name": "Great Vision Electricals Gallery",
-            "url": "https://greatvision.shop/gallery",
+            name: "Great Vision Electricals Gallery",
+            url: "https://greatvision.shop/gallery",
+            image: allImages.map((img) => ({
+              "@type": "ImageObject",
+              contentUrl: `https://greatvision.shop${img.src}`,
+              name: img.title,
+            })),
           })}
         </script>
       </Helmet>
 
       <main className="gallery-section">
         <header>
-          <h1 className="gallery-title">Great Vision Electricals Gallery</h1>
+          <h1 className="gallery-title">
+            Great Vision Electricals Gallery
+          </h1>
         </header>
 
-        {/* ✅ Important Static SEO Content */}
+        {/* Strong SEO Content (Important for Indexing) */}
         <section className="gallery-description">
+          <h2>Electrical Shop & Warehouse in Paliganj</h2>
           <p>
-            Great Vision Electricals Paliganj is a trusted electrical brand
-            providing quality products including LED panels, ceiling fans,
-            MCBs, switches, wiring solutions and more. This gallery showcases
-            our official store, warehouse (godown), electrician events,
-            product displays and brand identity images.
+            Great Vision Electricals Paliganj is a trusted electrical supplier
+            providing LED panels, ceiling fans, MCB distribution boxes, smart
+            switches, wiring materials and complete electrical solutions for
+            homes, businesses and contractors.
+          </p>
+          <p>
+            Our gallery highlights our retail shop setup, warehouse
+            infrastructure, electrician support programs, promotional events
+            and official brand identity visuals. We continuously work to
+            support electricians and customers with reliable electrical
+            products and modern solutions.
+          </p>
+          <p>
+            As a growing electrical brand in Paliganj, Great Vision
+            Electricals focuses on quality assurance, product availability and
+            long-term customer trust. This gallery provides a visual overview
+            of our operations and commitment to excellence.
           </p>
         </section>
 

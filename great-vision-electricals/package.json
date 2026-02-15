@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "postbuild": "react-snap"
+    "preview": "vite preview"
   },
   "reactSnap": {
     "source": "dist",
@@ -36,7 +35,6 @@
     "react-icons": "^5.5.0",
     "react-router-dom": "^6.30.3",
     "react-scroll": "^1.9.3",
-    "react-snap": "^1.23.0",
     "three": "^0.152.2"
   },
   "devDependencies": {

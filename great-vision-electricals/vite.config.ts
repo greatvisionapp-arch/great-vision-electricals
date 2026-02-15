@@ -6,7 +6,7 @@ export default defineConfig({
   base: "/",
 
   build: {
-    chunkSizeWarningLimit: 700, // ✅ Warning limit बढ़ाया
+    chunkSizeWarningLimit: 700,
   },
 
   server: {
@@ -14,8 +14,6 @@ export default defineConfig({
     port: 5173,
     strictPort: true,
     cors: true,
-
-    // ✅ ngrok domain allow
     allowedHosts: [
       "counterattractively-oversour-caryl.ngrok-free.dev",
     ],
