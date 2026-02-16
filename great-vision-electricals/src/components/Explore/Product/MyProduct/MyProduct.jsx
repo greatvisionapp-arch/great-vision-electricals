@@ -109,6 +109,7 @@ const MyProduct = ({ formatPrice }) => {
       </div>
     );
   }
+              
 
   return (
     <div className="myproduct-grid">

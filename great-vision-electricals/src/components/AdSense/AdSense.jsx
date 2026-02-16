@@ -1,25 +1,22 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-export default function AdSense() {
+export default function AdSense({ show }) {
   const location = useLocation();
 
   useEffect(() => {
-    const loadAd = () => {
-      try {
-        if (window.adsbygoogle && Array.isArray(window.adsbygoogle)) {
-          window.adsbygoogle.push({});
-        }
-      } catch (e) {
-        console.error("AdSense error:", e);
+    if (!show) return;
+
+    try {
+      if (window.adsbygoogle && Array.isArray(window.adsbygoogle)) {
+        window.adsbygoogle.push({});
       }
-    };
+    } catch (e) {
+      console.error("AdSense error:", e);
+    }
+  }, [location.pathname, show]);
 
-    // Slight delay so content renders first (important for policy)
-    const timer = setTimeout(loadAd, 800);
-
-    return () => clearTimeout(timer);
-  }, [location.pathname]);
+  if (!show) return null;
 
   return (
     <div

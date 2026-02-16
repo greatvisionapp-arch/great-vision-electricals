@@ -62,30 +62,31 @@ html.dark {
 
 .main-image {
   width: 100%;
-  height: 420px;
   border-radius: 18px;
   background: linear-gradient(145deg, #f2f3f7, #ffffff);
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  padding: 20px;
 }
 
-/* Dark gradient fix */
+/* Dark mode */
 html.dark .main-image {
   background: linear-gradient(145deg, #1f2228, #15181d);
 }
 
 .main-image img {
-  max-width: 90%;
-  max-height: 90%;
-  object-fit: contain;
+  width: auto;        /* natural width */
+  height: auto;       /* natural height */
+  max-width: 100%;    /* prevent overflow */
+  display: block;
   transition: transform 0.4s ease;
 }
 
 .main-image:hover img {
   transform: scale(1.05);
 }
+
 
 /* ================= RIGHT ================= */
 
@@ -301,34 +302,30 @@ html.dark .spec-image-wrapper {
 
 .spec-gallery {
   display: flex;
-  gap: 16px;
+  gap: 18px;
   flex-wrap: wrap;
   margin-bottom: 35px;
+  align-items: flex-end;   /* bottom align for clean look */
 }
 
-/* Smaller thumbnails */
 .spec-thumb {
-  width: 90px;        /* smaller */
-  height: 90px;       /* smaller */
   border-radius: 10px;
-  background: var(--card);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--border);
+  overflow: hidden;
   transition: 0.3s ease;
 }
 
 .spec-thumb img {
-  max-width: 85%;
-  max-height: 85%;
+  height: 120px;     /* fixed height */
+  width: auto;       /* natural width */
   object-fit: contain;
+  display: block;
 }
 
-/* Subtle hover */
 .spec-thumb:hover {
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
+
+
 
 /* Dark mode gradient fix (if needed) */
 html.dark .spec-thumb {

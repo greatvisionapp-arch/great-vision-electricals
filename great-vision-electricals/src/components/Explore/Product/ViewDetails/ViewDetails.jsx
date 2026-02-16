@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import pb from "../../../../lib/pb";
 import "./ViewDetails.css";
@@ -142,7 +142,80 @@ useEffect(() => {
 
 
 
-  /* ================= LOADING CHECK ================= */
+ 
+
+
+
+
+
+  /* ================= IMAGE HANDLING ================= */
+
+ /* ================= IMAGE HANDLING ================= */
+
+const images = useMemo(() => {
+  if (!product) return [];
+
+  try {
+    // LOCAL PRODUCT
+    if (product.isLocal === true) {
+      if (Array.isArray(product.images) && product.images.length > 0) {
+        return product.images;
+      }
+
+      if (product.image) {
+        return [product.image];
+      }
+
+      return [];
+    }
+
+    // POCKETBASE PRODUCT
+    const tempImages = [];
+
+    if (product.main_image) {
+      tempImages.push(
+        pb.files.getURL(product, product.main_image)
+      );
+    }
+
+    if (Array.isArray(product.images) && product.images.length > 0) {
+      product.images.forEach((file) => {
+        if (file && file !== product.main_image) {
+          tempImages.push(
+            pb.files.getURL(product, file)
+          );
+        }
+      });
+    }
+
+    return tempImages;
+  } catch (err) {
+    console.log("Image build error:", err);
+    return [];
+  }
+}, [product]);
+
+
+// ✅ Reset when product changes
+useEffect(() => {
+  if (product) {
+    setActiveImage(0);
+  }
+}, [product]);
+
+
+// ✅ Prevent invalid index
+useEffect(() => {
+  if (images.length > 0 && activeImage >= images.length) {
+    setActiveImage(0);
+  }
+}, [images, activeImage]);
+
+const currentImage =
+  images.length > 0 ? images[0] : null;
+
+
+ /* ================= LOADING CHECK ================= */
 
   /* ================= LOADING CHECK ================= */
 
@@ -165,53 +238,6 @@ if (!product) {
   );
 }
 
-
-
-
-
-  /* ================= IMAGE HANDLING ================= */
-
-  let images = [];
-
-// LOCAL PRODUCT
-if (product.isLocal) {
-  if (product.images?.length > 0) {
-    images = product.images;
-  } else if (product.image) {
-    images = [product.image];
-  }
-}
-
-// POCKETBASE PRODUCT
-else {
-  const tempImages = [];
-
-  // 1️⃣ Always push main_image first
-  if (product.main_image) {
-    tempImages.push(
-      pb.files.getURL(product, product.main_image)
-    );
-  }
-
-  // 2️⃣ Then push gallery images (avoid duplicate)
-  if (product.images?.length > 0) {
-    product.images.forEach((file) => {
-      if (file !== product.main_image) {
-        tempImages.push(
-          pb.files.getURL(product, file)
-        );
-      }
-    });
-  }
-
-  images = tempImages;
-}
-
-// Ensure active index valid
-const currentImage =
-  images[activeImage] || images[0] || "";
-
-
   /* ================= PRICE ================= */
 
   const hasMrp =
@@ -226,19 +252,19 @@ const currentImage =
   /* ================= RETURN ================= */
 
   return (
-    <div className="viewdetails">
-      {/* ================= TOP SECTION ================= */}
-      <div className="top-section">
-        {/* LEFT SIDE */}
-        <div className="left-section">
-  <div className="main-image">
-    {currentImage && (
-      <img
-        src={currentImage}
-        alt={product.name}
-      />
-    )}
-  </div>
+  <div className="viewdetails">
+    <div className="top-section">
+      <div className="left-section">
+
+        {/* MAIN IMAGE */}
+        <div className="main-image">
+          {images.length > 0 && (
+            <img
+              src={currentImage}
+              alt={product.name}
+            />
+          )}
+        </div>
 </div>
 
 
@@ -331,26 +357,26 @@ const currentImage =
       </div>
 
       {/* ================= SPEC SECTION ================= */}
-      <div className="spec-section">
-        {/* GALLERY */}
-        {images.length > 1 && (
-          <div className="spec-gallery">
-            {images.map((img, index) => (
-              <div
-                key={index}
-                className="spec-thumb"
-                onClick={() =>
-                  setActiveImage(index)
-                }
-              >
-                <img
-                  src={img}
-                  alt="product"
-                />
-              </div>
-            ))}
-          </div>
-        )}
+<div className="spec-section">
+  {images.length > 1 && (
+    <div className="spec-gallery">
+      {images.map((img, index) => (
+        <div
+          key={img}
+          className="spec-thumb"
+        >
+          <img
+            src={img}
+            alt={`product-${index}`}
+          />
+        </div>
+      ))}
+    </div>
+  )}
+
+
+
+
 
         {/* SPEC TABLE */}
         <div className="spec-table">
