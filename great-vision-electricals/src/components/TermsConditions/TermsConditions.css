@@ -15,23 +15,38 @@ body {
   line-height: 1.7;
   color: #2c2c2c;
   text-align: left;
+  animation: fadeIn 0.4s ease;
 }
 
 /* Main heading */
 .terms-container h1 {
   text-align: center;
   font-size: 34px;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   color: #111;
   font-weight: 600;
   border-bottom: 2px solid #eaeaea;
   padding-bottom: 12px;
 }
 
+/* Effective date */
+.effective-date {
+  text-align: center;
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 25px;
+}
+
+/* Section container */
+.terms-section {
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid #ececec;
+}
+
 /* Section headings */
 .terms-container h2 {
   font-size: 20px;
-  margin-top: 30px;
   margin-bottom: 10px;
   color: #1565c0;
   font-weight: 600;
@@ -61,13 +76,21 @@ body {
   font-weight: 600;
 }
 
-/* Center contact section */
-.terms-container h2:last-of-type {
-  text-align: center;
+/* Contact box */
+.contact-box {
+  background: #f9fafb;
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
 }
 
-.terms-container h2:last-of-type + p {
-  text-align: center;
+/* Hover section highlight */
+.terms-section:hover {
+  background: rgba(0,0,0,0.02);
+  border-radius: 8px;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 
 /* Tablet responsive */
@@ -126,11 +149,7 @@ body {
 
 }
 
-/* Smooth appearance */
-.terms-container {
-  animation: fadeIn 0.4s ease;
-}
-
+/* Smooth appearance animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -141,5 +160,3 @@ body {
     transform: translateY(0);
   }
 }
-
-

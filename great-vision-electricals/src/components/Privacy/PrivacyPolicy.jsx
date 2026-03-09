@@ -3,151 +3,229 @@ import "./PrivacyPolicy.css";
 export default function PrivacyPolicy() {
   return (
     <div className="privacy-container">
+
       <h1>Privacy Policy</h1>
 
-      <p><strong>Effective Date:</strong> 12 February 2026</p>
+      <p className="effective-date">
+        Effective Date: 12 February 2026
+      </p>
 
       <p>
         This Privacy Policy explains how Great Vision Electricals (“we,” “us,” or “our”) collects,
-        uses, stores, and protects your information when you visit our website or use our digital services.
+        uses, stores, and protects your information when you use the Great Vision website
+        or mobile application.
       </p>
 
       <p>
-        By using our website, you agree to the terms of this Privacy Policy.
+        By using the platform, users agree to the terms of this Privacy Policy.
       </p>
 
-      <h2>1. Who We Are</h2>
-      <p>
-        <strong>Website Name:</strong> Great Vision Electricals <br />
-        <strong>Business Location:</strong> Kushwaha Market, Paliganj, Patna, Bihar, India <br />
-        <strong>Contact Email:</strong> greatvisionapp@gmail.com
-      </p>
+      <div className="privacy-section">
+        <h2>1. Who We Are</h2>
 
-      <h2>2. Information We Collect</h2>
+        <div className="contact-box">
+          <p><strong>Business Name:</strong> Great Vision Electricals</p>
+          <p><strong>Location:</strong> Kushwaha Market, Paliganj, Patna, Bihar, India</p>
+          <p><strong>Email:</strong> greatvisionapp@gmail.com</p>
+        </div>
+      </div>
 
-      <p>We collect the following information from users:</p>
+      <div className="privacy-section">
+        <h2>2. About the Great Vision Application</h2>
 
-      <ul>
-        <li>Email address</li>
-        <li>Name associated with the email</li>
-        <li>Profile photo associated with the email</li>
-        <li>User ID (UID)</li>
-        <li>Device name and type</li>
-        <li>Browser type and operating system</li>
-        <li>User agent information</li>
-        <li>Login timestamps and login count</li>
-        <li>Usage activity such as visit time and interaction</li>
-        <li>IP address (automatically collected for security)</li>
-      </ul>
+        <p>
+          Great Vision is a <span className="highlight">private reward platform</span>
+          developed for electricians associated with our store.
+        </p>
 
-      <h2>3. Authentication and Backend Services</h2>
+        <p>
+          The application is <span className="highlight">not intended for public use</span>.
+          Only electricians who are verified and approved by the store administrator
+          can access the platform.
+        </p>
 
-      <p>
-        We use Firebase Authentication to securely authenticate users and manage login sessions.
-      </p>
+        <p>
+          The platform works using a
+          <span className="feature"> QR Coupon Reward System </span>
+          where electricians earn reward points for eligible product sales.
+        </p>
+      </div>
 
-      <p>
-        We use Firebase Realtime Database to store login activity including login timestamps,
-        login count, and device information.
-      </p>
+      <div className="privacy-section">
+        <h2>3. Personal Information We Collect</h2>
 
-      <p>
-        We use PocketBase as our backend database to store necessary account and service-related data.
-      </p>
+        <p>
+          To verify electricians and operate the reward system we may collect:
+        </p>
 
-      <p>
-        Our website is hosted and protected using Cloudflare, which provides security,
-        performance optimization, and protection against malicious activity.
-      </p>
+        <ul>
+          <li>Name</li>
+          <li>Phone number and email address</li>
+          <li>Residential address</li>
+          <li><span className="sensitive">Aadhaar number and Aadhaar card images</span></li>
+          <li><span className="sensitive">PAN number and PAN card image</span></li>
+          <li>Profile photo (if provided)</li>
+          <li>QR code scan activity</li>
+          <li>Reward points and redemption history</li>
+        </ul>
 
-      <h2>4. Cookies and Tracking Technologies</h2>
+        <p>
+          This information is collected strictly for
+          <span className="highlight"> identity verification and fraud prevention</span>.
+        </p>
+      </div>
 
-      <p>
-        We use cookies and similar technologies to maintain secure login sessions,
-        ensure website functionality, and improve user experience.
-      </p>
+      <div className="privacy-section">
+        <h2>4. Reward Point System</h2>
 
-      <p>
-        Cookies may be created by Firebase Authentication, Cloudflare, and our backend systems.
-      </p>
+        <p>
+          Store administrators generate QR coupons for electrical products.
+        </p>
 
-      <h2>5. How We Use Your Information</h2>
+        <p>
+          Approved electricians can scan these coupons after selling eligible products.
+        </p>
 
-      <ul>
-        <li>To authenticate and identify users</li>
-        <li>To provide website functionality and services</li>
-        <li>To improve website performance and user experience</li>
-        <li>To monitor security and prevent unauthorized access</li>
-        <li>To analyze website usage and improve services</li>
-      </ul>
+        <p>
+          When a valid coupon is scanned,
+          <span className="feature"> reward points </span>
+          are credited to the electrician's account.
+        </p>
 
-      <h2>6. Third-Party Advertising</h2>
+        <p>
+          Points may later be redeemed for rewards or monetary payments
+          through the application or at the physical store.
+        </p>
+      </div>
 
-      <p>
-        Our website may use third-party advertising services such as Google Ads or AdSense.
-      </p>
+      <div className="privacy-section">
+        <h2>5. Sensitive Information</h2>
 
-      <p>
-        These services may collect device information, cookies, and interaction data
-        to display relevant advertisements.
-      </p>
+        <p>
+          Information such as
+          <span className="sensitive"> Aadhaar and PAN documents </span>
+          are considered sensitive personal data and are collected only for
+          account verification purposes.
+        </p>
 
-      <h2>7. Data Sharing and Disclosure</h2>
+        <p>
+          Access to this information is restricted only to authorized administrators.
+        </p>
+      </div>
 
-      <p>
-        We do not sell, rent, or trade your personal information.
-      </p>
+      <div className="privacy-section">
+        <h2>6. User Consent</h2>
 
-      <p>
-        Your data may be processed by trusted services including Firebase, PocketBase,
-        Cloudflare, and advertising providers, only for website functionality and improvement.
-      </p>
+        <p>
+          Users <span className="consent">voluntarily provide their personal information</span>
+          when registering in the Great Vision application.
+        </p>
 
-      <h2>8. Data Security</h2>
+        <p>
+          This information is provided by the user with their own consent
+          for identity verification and platform access.
+        </p>
 
-      <p>
-        We use secure infrastructure and reasonable technical measures to protect your data.
-        However, no system can guarantee complete security.
-      </p>
+        <p>
+          Users who do not wish to provide the required information
+          should not register or use the application.
+        </p>
+      </div>
 
-      <h2>9. Data Retention</h2>
+      <div className="privacy-section">
+        <h2>7. Data Usage</h2>
 
-      <p>
-        We retain user data as long as necessary to provide services,
-        maintain security, and improve website performance.
-      </p>
+        <p>
+          User information is used only for:
+        </p>
 
-      <h2>10. Your Rights</h2>
+        <ul>
+          <li>Identity verification</li>
+          <li>Account approval</li>
+          <li>Providing access to the platform</li>
+          <li>Operating the reward system</li>
+          <li>Preventing fraud or misuse</li>
+        </ul>
+      </div>
 
-      <ul>
-        <li>Request access to your data</li>
-        <li>Request correction of incorrect data</li>
-        <li>Request deletion of your data</li>
-      </ul>
+      <div className="privacy-section">
+        <h2>8. Data Sharing</h2>
 
-      <p>
-        To request deletion, contact: greatvisionapp@gmail.com
-      </p>
+        <p>
+          We <span className="no-sell">do not sell, rent, or trade user personal data</span>
+          to any third party.
+        </p>
 
-      <h2>11. Children's Privacy</h2>
+        <p>
+          Data may only be processed by trusted infrastructure providers required
+          for the operation of the platform such as:
+        </p>
 
-      <p>
-        This website is not intended for children under 13 years of age.
-      </p>
+        <ul>
+          <li>Firebase Authentication</li>
+          <li>Firebase Realtime Database</li>
+          <li>PocketBase backend database</li>
+          <li>Cloudflare security infrastructure</li>
+        </ul>
+      </div>
 
-      <h2>12. Changes to This Privacy Policy</h2>
+      <div className="privacy-section">
+        <h2>9. Data Security</h2>
 
-      <p>
-        We may update this Privacy Policy at any time.
-      </p>
+        <p>
+          We implement technical and organizational security measures
+          to protect user data from unauthorized access or misuse.
+        </p>
+      </div>
 
-      <h2>13. Contact Us</h2>
+      <div className="privacy-section">
+        <h2>10. Data Retention</h2>
 
-      <p>
-        Great Vision Electricals <br />
-        Kushwaha Market, Paliganj, Patna, Bihar, India <br />
-        Email: greatvisionapp@gmail.com
-      </p>
+        <p>
+          User data is retained only as long as necessary to operate
+          the Great Vision platform.
+        </p>
+      </div>
+
+      <div className="privacy-section">
+        <h2>11. User Rights</h2>
+
+        <ul>
+          <li>Request access to personal data</li>
+          <li>Request correction of incorrect data</li>
+          <li>Request deletion of personal data</li>
+        </ul>
+
+        <p>
+          For deletion requests contact: greatvisionapp@gmail.com
+        </p>
+      </div>
+
+      <div className="privacy-section">
+        <h2>12. Children's Privacy</h2>
+
+        <p>
+          The platform is not intended for children under 13 years of age.
+        </p>
+      </div>
+
+      <div className="privacy-section">
+        <h2>13. Changes to This Policy</h2>
+
+        <p>
+          We may update this Privacy Policy from time to time.
+        </p>
+      </div>
+
+      <div className="privacy-section">
+        <h2>14. Contact</h2>
+
+        <div className="contact-box">
+          <p>Great Vision Electricals</p>
+          <p>Kushwaha Market, Paliganj, Patna, Bihar, India</p>
+          <p>Email: greatvisionapp@gmail.com</p>
+        </div>
+      </div>
 
     </div>
   );

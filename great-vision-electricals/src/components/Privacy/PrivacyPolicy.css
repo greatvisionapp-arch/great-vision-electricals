@@ -5,6 +5,23 @@
   --text-secondary: #4b5563;
   --border-color: #e5e7eb;
   --accent: #2563eb;
+
+  /* highlight colors */
+  --highlight-bg: #eef2ff;
+  --highlight-text: #1e40af;
+
+  --sensitive-bg: #fef2f2;
+  --sensitive-text: #b91c1c;
+
+  --feature-bg: #ecfdf5;
+  --feature-text: #065f46;
+
+  /* new highlight types */
+  --consent-bg: #ecfeff;
+  --consent-text: #0e7490;
+
+  --nosell-bg: #f0fdf4;
+  --nosell-text: #166534;
 }
 
 /* Page background */
@@ -22,9 +39,10 @@ body {
   background: var(--bg-main);
   border-radius: 14px;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+  animation: fadeIn 0.35s ease;
 }
 
-/* Main heading centered */
+/* Main heading */
 .privacy-container h1 {
   font-size: 2.1rem;
   font-weight: 700;
@@ -33,7 +51,7 @@ body {
   text-align: center;
 }
 
-/* Effective date centered */
+/* Effective date */
 .privacy-container .effective-date {
   color: var(--text-secondary);
   font-size: 0.95rem;
@@ -96,6 +114,51 @@ body {
   padding-right: 6px;
 }
 
+/* Important highlight */
+.highlight {
+  background: var(--highlight-bg);
+  color: var(--highlight-text);
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+/* Sensitive data highlight */
+.sensitive {
+  background: var(--sensitive-bg);
+  color: var(--sensitive-text);
+  padding: 3px 6px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+/* Feature highlight */
+.feature {
+  background: var(--feature-bg);
+  color: var(--feature-text);
+  padding: 3px 6px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+/* User consent highlight */
+.consent {
+  background: var(--consent-bg);
+  color: var(--consent-text);
+  padding: 3px 6px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+/* Data not sold highlight */
+.no-sell {
+  background: var(--nosell-bg);
+  color: var(--nosell-text);
+  padding: 3px 6px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
 /* Tablet */
 @media (max-width: 768px) {
 
@@ -119,7 +182,7 @@ body {
 
 }
 
-/* Android small devices */
+/* Mobile */
 @media (max-width: 480px) {
 
   .privacy-container {
@@ -143,11 +206,7 @@ body {
 
 }
 
-/* Smooth appearance animation */
-.privacy-container {
-  animation: fadeIn 0.35s ease;
-}
-
+/* Animation */
 @keyframes fadeIn {
   from {
     opacity: 0;

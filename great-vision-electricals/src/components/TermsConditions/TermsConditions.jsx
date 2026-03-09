@@ -6,154 +6,193 @@ export default function TermsConditions() {
 
       <h1>Terms and Conditions</h1>
 
-      <p><strong>Effective Date:</strong> 12 February 2026</p>
-
-      <p>
-        By accessing and using the Great Vision website, you agree to comply with
-        these Terms and Conditions. If you do not agree, please do not use this website.
-      </p>
-
-      <h2>1. Company Identity and Ownership</h2>
-
-      <p>
-        Great Vision is a trademark-protected business operated under
-        <strong> Shivam Electricals, Paliganj, Patna, Bihar, India</strong>.
+      <p className="effective-date">
+        Effective Date: 12 February 2026
       </p>
 
       <p>
-        Shivam Electricals has been operating as a physical electrical business since 2008.
+        By accessing or using the Great Vision website or mobile application,
+        you agree to comply with these Terms and Conditions.
+        If you do not agree with these terms, please discontinue use of our services.
       </p>
 
-      <p>
-        This website is owned by Shivam Electricals and managed by
-        <strong> Shivam Kumar</strong>, son of the business owner.
-      </p>
+      <div className="terms-section">
+        <h2>1. Company Identity and Ownership</h2>
 
-      <h2>2. Business Location and Contact</h2>
+        <p>
+          <strong>Great Vision</strong> is operated under
+          <strong> Shivam Electricals, Paliganj, Patna, Bihar, India</strong>.
+        </p>
 
-      <p>
-        Physical Address:<br />
-        Kushwaha Market, Paliganj, Patna, Bihar, India
-      </p>
+        <p>
+          Shivam Electricals has been operating as a physical electrical business since <strong>2008</strong>.
+        </p>
 
-      <p>
-        Email: greatvisionapp@gmail.com
-      </p>
+        <p>
+          The website and digital services are owned by Shivam Electricals
+          and managed by <strong>Shivam Kumar</strong>.
+        </p>
+      </div>
 
-      <p>
-        Customers may visit our physical shop during working hours for business inquiries.
-      </p>
+      <div className="terms-section">
+        <h2>2. Business Location and Contact</h2>
 
-      <h2>3. Website Access and User Login</h2>
+        <div className="contact-box">
+          <p>Kushwaha Market, Paliganj, Patna, Bihar, India</p>
+          <p>Email: greatvisionapp@gmail.com</p>
+        </div>
 
-      <p>
-        Users may securely log in using Firebase Authentication services.
-      </p>
+        <p>
+          Customers may visit our physical store during working hours for
+          business inquiries.
+        </p>
+      </div>
 
-      <p>
-        Users are responsible for maintaining the confidentiality of their login credentials.
-      </p>
+      <div className="terms-section">
+        <h2>3. Website Access and User Login</h2>
 
-      <p>
-        Unauthorized access or misuse of accounts is strictly prohibited.
-      </p>
+        <p>
+          Users may securely log in using <strong>Firebase Authentication</strong>.
+        </p>
 
-      <h2>4. User Data and Data Deletion Rights</h2>
+        <p>
+          Users are responsible for maintaining the confidentiality of their login credentials.
+        </p>
 
-      <p>
-        Users have the right to request deletion of their personal data.
-      </p>
+        <p>
+          Unauthorized access or misuse of accounts is strictly prohibited.
+        </p>
+      </div>
 
-      <p>
-        Data is securely stored using Firebase and PocketBase backend systems.
-      </p>
+      <div className="terms-section">
+        <h2>4. User Data and Data Deletion Rights</h2>
 
-      <h2>5. Acceptable Use and Illegal Activities</h2>
+        <p>
+          Users may request deletion of their personal data at any time.
+        </p>
 
-      <p>
-        Users must NOT attempt to:
-      </p>
+        <p>
+          Data is stored securely using Firebase and PocketBase backend systems.
+        </p>
+      </div>
 
-      <ul>
-        <li>Hack the website or backend systems</li>
-        <li>Perform DDoS or denial-of-service attacks</li>
-        <li>Access unauthorized systems or data</li>
-        <li>Disrupt website functionality</li>
-      </ul>
+      <div className="terms-section">
+        <h2>5. Acceptable Use</h2>
 
-      <p>
-        Such actions are illegal and may result in legal action under Indian law.
-      </p>
+        <p>Users must NOT attempt to:</p>
 
-      <h2>6. Intellectual Property and Trademark Protection</h2>
+        <ul>
+          <li>Hack or exploit the website or backend systems</li>
+          <li>Perform DDoS or denial-of-service attacks</li>
+          <li>Access unauthorized systems or restricted data</li>
+          <li>Disrupt website functionality</li>
+        </ul>
+      </div>
 
-      <p>
-        The Great Vision name, logo, and website content are protected and owned by
-        Shivam Electricals.
-      </p>
+      <div className="terms-section">
+        <h2>6. Fraud Prevention and Legal Action</h2>
 
-      <p>
-        Unauthorized use, copying, or reproduction is prohibited.
-      </p>
+        <p>
+          Users must not attempt to manipulate or exploit the Great Vision platform.
+        </p>
 
-      <h2>7. Backend Services and Infrastructure</h2>
+        <p>Prohibited activities include:</p>
 
-      <p>
-        This website uses Firebase Authentication for login and PocketBase for backend data storage.
-      </p>
+        <ul>
+          <li>Attempting to manipulate the reward system</li>
+          <li>Scanning unauthorized or duplicate QR coupons</li>
+          <li>Generating fake reward points</li>
+          <li>Using automated tools to exploit the platform</li>
+        </ul>
 
-      <p>
-        Cloudflare is used for hosting, security, and performance optimization.
-      </p>
+        <p>
+          If such activities are detected, Great Vision reserves the right to:
+        </p>
 
-      <h2>8. Service Availability and Downtime</h2>
+        <ul>
+          <li>Suspend or permanently terminate the user account</li>
+          <li>Cancel accumulated reward points</li>
+          <li>Block access to the platform</li>
+          <li>Take legal action under applicable Indian laws</li>
+        </ul>
+      </div>
 
-      <p>
-        We strive to maintain continuous service availability.
-      </p>
+      <div className="terms-section">
+        <h2>7. Intellectual Property</h2>
 
-      <p>
-        However, backend services may occasionally be unavailable due to maintenance,
-        updates, or technical issues.
-      </p>
+        <p>
+          The <strong>Great Vision</strong> name, branding, logo, and website content
+          are the intellectual property of Shivam Electricals.
+        </p>
 
-      <p>
-        Downtime may last between 24 to 96 hours in some cases.
-      </p>
+        <p>
+          Unauthorized copying, distribution, or reproduction is prohibited.
+        </p>
+      </div>
 
-      <p>
-        Firebase login services may remain functional during backend downtime.
-      </p>
+      <div className="terms-section">
+        <h2>8. Backend Services and Infrastructure</h2>
 
-      <p>
-        We are not liable for losses caused by temporary service interruptions.
-      </p>
+        <p>
+          Our services use the following infrastructure:
+        </p>
 
-      <h2>9. Governing Law</h2>
+        <ul>
+          <li>Firebase Authentication for login</li>
+          <li>PocketBase for backend database management</li>
+          <li>Cloudflare for security and performance optimization</li>
+        </ul>
+      </div>
 
-      <p>
-        These Terms are governed by the laws of India.
-      </p>
+      <div className="terms-section">
+        <h2>9. Service Availability</h2>
 
-      <p>
-        Any disputes shall fall under Indian legal jurisdiction.
-      </p>
+        <p>
+          We strive to maintain continuous service availability.
+        </p>
 
-      <h2>10. Changes to Terms</h2>
+        <p>
+          However, services may occasionally be unavailable due to maintenance,
+          updates, or technical issues.
+        </p>
 
-      <p>
-        We may update these Terms at any time without prior notice.
-      </p>
+        <p>
+          We are not responsible for losses caused by temporary service interruptions.
+        </p>
+      </div>
 
-      <h2>11. Contact Information</h2>
+      <div className="terms-section">
+        <h2>10. Governing Law</h2>
 
-      <p>
-        Great Vision <br />
-        Owned by: Shivam Electricals <br />
-        Website Manager: Shivam Kumar <br />
-        Address: Kushwaha Market, Paliganj, Patna, Bihar, India <br />
-        Email: greatvisionapp@gmail.com
-      </p>
+        <p>
+          These Terms are governed by the laws of India.
+        </p>
+
+        <p>
+          Any disputes will fall under Indian legal jurisdiction.
+        </p>
+      </div>
+
+      <div className="terms-section">
+        <h2>11. Changes to Terms</h2>
+
+        <p>
+          We may update these Terms and Conditions at any time.
+          Continued use of the service indicates acceptance of updated terms.
+        </p>
+      </div>
+
+      <div className="terms-section">
+        <h2>12. Contact Information</h2>
+
+        <div className="contact-box">
+          <p><strong>Great Vision</strong></p>
+          <p>Owned by: Shivam Electricals</p>
+          <p>Manager: Shivam Kumar</p>
+          <p>Kushwaha Market, Paliganj, Patna, Bihar, India</p>
+          <p>Email: greatvisionapp@gmail.com</p>
+        </div>
+      </div>
 
     </div>
   );
