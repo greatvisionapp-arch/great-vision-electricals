@@ -68,7 +68,7 @@ const Footer: React.FC = () => {
             </li>
             <li>
               <a
-                href="https://www.google.com/maps/place/?q=place_id:ChIJ23KGfaFPjTkRhv9OL1DvqgA"
+                href="https://maps.app.goo.gl/iGjYX4UQmvzYKzLg9"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -86,7 +86,7 @@ const Footer: React.FC = () => {
             </li>
             <li>
               <a
-                href="https://facebook.com/"
+                href="https://www.facebook.com/GreatVisionElectricals/"
                 target="_blank"
                 rel="noopener noreferrer"
               >

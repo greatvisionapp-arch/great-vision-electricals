@@ -25,7 +25,7 @@
     />
 
     <meta name="gridinsoft-key" content="52hwvqdg7kv5s24xxfhkn9xfjiwiqz4g3rwpcp6lqrpzmy0f03tjht4nod6qjgdp" />
-
+    
     <!-- FAVICON -->
     <link rel="icon" href="/favicon-32x32.png" />
 
@@ -35,6 +35,11 @@
     <!-- ADS -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6454755736181446"
      crossorigin="anonymous"></script>
+
+    <!-- FACEBOOK SDK (ADDED) -->
+    <script async defer crossorigin="anonymous"
+      src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0">
+    </script>
 
     <!-- ✅ MAIN BUSINESS SCHEMA (MOST IMPORTANT) -->
     <script type="application/ld+json">
@@ -80,7 +85,8 @@
       "openingHours": "Mo-Su 09:00-20:00",
 
       "sameAs": [
-        "https://www.google.com/maps/place/?q=place_id:ChIJ23KGfaFPjTkRhv9OL1DvqgA"
+        "https://www.google.com/maps/place/?q=place_id:ChIJ23KGfaFPjTkRhv9OL1DvqgA",
+        "https://www.facebook.com/GreatVisionElectricals/"
       ]
     }
     </script>
@@ -103,6 +109,18 @@
 
   <body>
     <div id="root"></div>
+
+    <!-- FACEBOOK PAGE EMBED (ADDED) -->
+    <div style="max-width:500px; margin:20px auto;">
+      <div class="fb-page"
+           data-href="https://www.facebook.com/GreatVisionElectricals/"
+           data-tabs="timeline"
+           data-adapt-container-width="true"
+           data-hide-cover="false"
+           data-show-facepile="true">
+      </div>
+    </div>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
