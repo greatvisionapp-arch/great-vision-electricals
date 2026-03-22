@@ -6,6 +6,7 @@ import {
   faFacebook,
   faGoogle,
   faYoutube,
+  faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
 import { Link } from "react-router-dom";
 
@@ -19,16 +20,26 @@ const Footer: React.FC = () => {
           <h3>GREAT VISION ELECTRICALS</h3>
           <ul>
             <li>
-              <i className="fa-solid fa-location-dot"></i>
-              Chandhosh Road, Kushwaha Market, Paliganj, Patna-801110, Bihar
+              📍 Chandhosh Road, Kushwaha Market, Paliganj, Patna-801110, Bihar
             </li>
             <li>
-              <i className="fa-solid fa-file-invoice"></i>
-              GSTIN: 10BYNPK8058A1ZN
+              🧾 GSTIN: 10BYNPK8058A1ZN{" "}
+              <a
+                href="https://services.gst.gov.in/services/searchtp?gstin=10BYNPK8058A1ZN"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                (Verify)
+              </a>
             </li>
             <li>
-              <i className="fa-solid fa-phone"></i>
-              Contact: 8002225022
+              📞 <a href="tel:+918002225022">+91 8002225022</a>
+            </li>
+            <li>
+              📧 <a href="mailto:support@greatvision.shop">support@greatvision.shop</a>
+            </li>
+            <li>
+              👤 Owner: Nirbhay Kumar
             </li>
           </ul>
         </div>
@@ -44,26 +55,51 @@ const Footer: React.FC = () => {
 
         {/* Community Section */}
         <div className="footer-section">
-          <h3>COMMUNITY</h3>
+          <h3>CONNECT</h3>
           <ul>
             <li>
-              <a href="#" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://wa.me/918002225022"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FontAwesomeIcon icon={faWhatsapp} /> WhatsApp
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.google.com/maps/place/?q=place_id:ChIJ23KGfaFPjTkRhv9OL1DvqgA"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FontAwesomeIcon icon={faGoogle} /> Google Maps
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.instagram.com/great_vision_electricals/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FontAwesomeIcon icon={faInstagram} /> Instagram
               </a>
             </li>
             <li>
-              <a href="#" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://facebook.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FontAwesomeIcon icon={faFacebook} /> Facebook
               </a>
             </li>
             <li>
-              <a href="#" target="_blank" rel="noopener noreferrer">
-                <FontAwesomeIcon icon={faGoogle} /> Google
-              </a>
-            </li>
-            <li>
-              <a href="#" target="_blank" rel="noopener noreferrer">
-                <FontAwesomeIcon icon={faYoutube} /> Youtube
+              <a
+                href="https://youtube.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FontAwesomeIcon icon={faYoutube} /> YouTube
               </a>
             </li>
           </ul>
@@ -74,19 +110,13 @@ const Footer: React.FC = () => {
           <h3>LEGAL</h3>
           <ul>
             <li>
-              <Link to="/privacy">
-                <i className="fa-solid fa-shield-halved"></i> Privacy Policy
-              </Link>
+              <Link to="/privacy">Privacy Policy</Link>
             </li>
             <li>
-              <Link to="/terms">
-                <i className="fa-solid fa-file-contract"></i> Terms
-              </Link>
+              <Link to="/terms">Terms & Conditions</Link>
             </li>
             <li>
-              <Link to="/contact">
-                <i className="fa-solid fa-phone"></i> Contact
-              </Link>
+              <Link to="/contact">Contact</Link>
             </li>
           </ul>
         </div>
@@ -95,12 +125,12 @@ const Footer: React.FC = () => {
 
       <div className="footer-bottom">
         <p>
-          &copy; {new Date().getFullYear()} SHIVAM ELECTRICALS PALIGANJ
+          © {new Date().getFullYear()} Great Vision Electricals (Shivam Electricals)
         </p>
         <p>
-          Website designed by{" "}
+          Website managed by{" "}
           <a
-            href="https://instagram.com/shi_vam__9"
+            href="https://www.instagram.com/great_vision_electricals/"
             target="_blank"
             rel="noopener noreferrer"
           >
