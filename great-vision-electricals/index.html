@@ -1,48 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
 
-    <!-- SEO TITLE -->
-    <title>Great Vision Electricals | Shivam Electricals Paliganj Patna</title>
+<head>
+  <meta charset="UTF-8" />
 
-    <!-- SEO DESCRIPTION -->
-    <meta
-      name="description"
-      content="Great Vision Electricals (Shivam Electricals) — GST verified electrical shop in Paliganj, Patna, Bihar. Trusted supplier of electrical products for homes and businesses."
-    />
+  <!-- SEO TITLE -->
+  <title>Great Vision Electricals | Shivam Electricals Paliganj Patna</title>
 
-    <!-- VIEWPORT -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- SEO DESCRIPTION -->
+  <meta name="description"
+    content="Great Vision Electricals (Shivam Electricals) — GST verified electrical shop in Paliganj, Patna, Bihar. Trusted supplier of electrical products for homes and businesses." />
 
-    <!-- CANONICAL -->
-    <link rel="canonical" href="https://greatvision.shop/" />
+  <!-- VIEWPORT -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- GOOGLE VERIFICATION -->
-    <meta
-      name="google-site-verification"
-      content="rPKjgfzWNDfj13JeVbpLlevuDIMCbX21dZnTaSKeVVM"
-    />
+  <!-- CANONICAL -->
+  <link rel="canonical" href="https://greatvision.shop/" />
 
-    <meta name="gridinsoft-key" content="52hwvqdg7kv5s24xxfhkn9xfjiwiqz4g3rwpcp6lqrpzmy0f03tjht4nod6qjgdp" />
-    
-    <!-- FAVICON -->
-    <link rel="icon" href="/favicon-32x32.png" />
+  <!-- GOOGLE VERIFICATION -->
+  <meta name="google-site-verification" content="rPKjgfzWNDfj13JeVbpLlevuDIMCbX21dZnTaSKeVVM" />
 
-    <!-- PWA -->
-    <link rel="manifest" href="/site.webmanifest" />
+  <meta name="gridinsoft-key" content="52hwvqdg7kv5s24xxfhkn9xfjiwiqz4g3rwpcp6lqrpzmy0f03tjht4nod6qjgdp" />
 
-    <!-- ADS -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6454755736181446"
-     crossorigin="anonymous"></script>
+  <!-- FAVICON -->
+  <link rel="icon" href="/favicon-32x32.png" />
 
-    <!-- FACEBOOK SDK (ADDED) -->
-    <script async defer crossorigin="anonymous"
-      src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0">
-    </script>
+  <!-- PWA -->
+  <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- ✅ MAIN BUSINESS SCHEMA (MOST IMPORTANT) -->
-    <script type="application/ld+json">
+  <!-- ADS -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6454755736181446"
+    crossorigin="anonymous"></script>
+
+  <!-- FACEBOOK SDK (ADDED) -->
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0">
+  </script>
+
+  <!-- ✅ MAIN BUSINESS SCHEMA (MOST IMPORTANT) -->
+  <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "ElectricalBusiness",
@@ -91,8 +86,8 @@
     }
     </script>
 
-    <!-- ✅ OWNER -->
-    <script type="application/ld+json">
+  <!-- ✅ OWNER -->
+  <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
@@ -105,22 +100,28 @@
     }
     </script>
 
-  </head>
+</head>
 
-  <body>
-    <div id="root"></div>
+<body>
+  <div id="root"></div>
 
-    <!-- FACEBOOK PAGE EMBED (ADDED) -->
-    <div style="max-width:500px; margin:20px auto;">
-      <div class="fb-page"
-           data-href="https://www.facebook.com/GreatVisionElectricals/"
-           data-tabs="timeline"
-           data-adapt-container-width="true"
-           data-hide-cover="false"
-           data-show-facepile="true">
-      </div>
+  <!-- FACEBOOK PAGE EMBED (ADDED) -->
+  <div style="max-width:500px; margin:20px auto;">
+    <div class="fb-page" data-href="https://www.facebook.com/GreatVisionElectricals/" data-tabs="timeline"
+      data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
     </div>
+  </div>
 
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+  <script type="module" src="/src/main.tsx"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then((reg) => console.log('Service Worker Registered', reg))
+          .catch((err) => console.log('Service Worker Error', err));
+      });
+    }
+  </script>
+</body>
+
 </html>
